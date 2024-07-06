@@ -1,0 +1,12 @@
+<div class="product__item">
+  <img src="{{product.image}}" alt="">
+<!--  <p>{{product.title}}</p>-->
+<!--  <p>{{product.price}}</p>-->
+<!--  <p>{{product.rating.rate}}</p>-->
+<!--  <p>{{product.id}}</p>-->
+  <button *ngIf="!isClicked;else counter" (click)="replaceAddToCartButtonWithCounter()">Hi
+  </button>
+  <ng-template #counter>
+    <app-cart-counter id="#counter" [count]="count" (changedCount)="updateProductQuantity($event)"></app-cart-counter>
+  </ng-template>
+</div>
