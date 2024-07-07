@@ -1,9 +1,9 @@
 <div class="product__item">
-  <img src="{{product.image}}" alt="">
-  <a routerLink="/products/{{product.id}}"><p>{{product.title}}</p></a>
-<!--  <p>{{product.price}}</p>-->
-<!--  <p>{{product.rating.rate}}</p>-->
-<!--  <p>{{product.id}}</p>-->
+  <img src="{{product.image}}" height="200" alt="">
+  <p>{{product.title}}</p>
+  <p>{{product.price}}</p>
+  <p>{{product.rating.rate}}</p>
+  <p>{{product.id}}</p>
   <app-cart-counter [count]="count"
                     (clicked)="addToCartAndSetCartProductCount()"
                     (changedCount)="updateProductQuantity($event)">
@@ -11,3 +11,4 @@
   <button (click)="delete()">Delete</button>
 </div>
 <!--<router-outlet></router-outlet>-->
+<app-reviews [productId]="product.id"></app-reviews>

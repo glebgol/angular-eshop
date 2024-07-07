@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Product} from "../product";
 import {CartService} from "../../cart.service";
 
@@ -8,11 +8,12 @@ import {CartService} from "../../cart.service";
   styleUrl: './product.component.scss'
 })
 export class ProductComponent {
-  @Input({required: true}) product!: Product;
-  isClicked: boolean = false;
-  count: number = 0;
+  @Input() product!: Product;
+  @Output() deleted = new EventEmitter<string>();
 
-  constructor(private cartService: CartService) {
+  count: number = 1;
+
+  constructor(public cartService: CartService) {
   }
 
   updateProductQuantity(quantity: number) {
@@ -20,10 +21,17 @@ export class ProductComponent {
     this.cartService.updateCart(this.product, quantity);
   }
 
-  replaceAddToCartButtonWithCounter() {
-    this.isClicked = true;
-    this.cartService.getCartProductEntry(this.product.id).subscribe(cartEntry =>
-      this.count = cartEntry.count
-    );
+  addToCartAndSetCartProductCount() {
+    console.log(1)
+    this.cartService.getCartProductEntry(this.product.id).subscribe(cartEntry => {
+      this.count = cartEntry.count;
+    }, () => {
+      this.count = 1;
+      this.cartService.updateCart(this.product, this.count);
+    })
+  }
+
+  delete() {
+    this.deleted.emit(this.product.id);
   }
 }

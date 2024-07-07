@@ -16,4 +16,9 @@ export class ProductListComponent {
   ngOnInit() {
     this.productService.getProducts().subscribe(products => this.products = products);
   }
+
+  onProductDelete(productId: string) {
+    this.products = this.products.filter(product => product.id != productId);
+    this.productService.deleteProduct(productId);
+  }
 }

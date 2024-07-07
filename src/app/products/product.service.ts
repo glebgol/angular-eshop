@@ -14,4 +14,11 @@ export class ProductService {
     return this.http.get<Product[]>('http://localhost:8000/products');
   }
 
+  getProductById(productId: string): Observable<Product> {
+    return this.http.get<Product>(`http://localhost:8000/products/${productId}`);
+  }
+
+  deleteProduct(productId: string): void {
+    this.http.delete(`http://localhost:8000/products/${productId}`).subscribe();
+  }
 }

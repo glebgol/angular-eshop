@@ -1,5 +1,9 @@
-<div class="counter">
-  <button (click)="decrementCounter()" [disabled]="isDisabled()">-</button>
-  <p>{{count}}</p>
-  <button (click)="incrementCounter()">+</button>
-</div>
+<button *ngIf="!isClicked;else counter" (click)="addToCartAndOpenCounter()">Add To Cart!</button>
+
+<ng-template #counter>
+  <div class="counter">
+    <button (click)="decrementCounter()" [disabled]="isDisabled()">-</button>
+    <p>{{count}}</p>
+    <button (click)="incrementCounter()">+</button>
+  </div>
+</ng-template>

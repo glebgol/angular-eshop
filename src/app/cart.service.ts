@@ -50,7 +50,7 @@ export class CartService {
     this.httpClient.delete(`http://localhost:8000/cart/${productId}`).subscribe()
   }
 
-  private createCartEntry(product: Product, quantity: number) {
+  public createCartEntry(product: Product, quantity: number) {
     this.httpClient.post('http://localhost:8000/cart', this.getNewCartEntry(product, quantity)).subscribe();
   }
 
