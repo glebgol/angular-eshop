@@ -5,9 +5,10 @@
 <!--  <p>{{product.rating.rate}}</p>-->
 <!--  <p>{{product.id}}</p>-->
   <app-cart-counter [count]="count"
+                    [stock]="product.stock"
                     (clicked)="addToCartAndSetCartProductCount()"
                     (changedCount)="updateProductQuantity($event)">
   </app-cart-counter>
   <button (click)="delete()">Delete</button>
+  <button routerLink="../product/edit/{{product.id}}">Edit</button>
 </div>
-<!--<router-outlet></router-outlet>-->

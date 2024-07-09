@@ -6,6 +6,7 @@ export interface Product {
     count: number
   },
   title: string,
+  description: string,
   image: string,
   stock: number
 }

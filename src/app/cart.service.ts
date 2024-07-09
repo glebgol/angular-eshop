@@ -23,8 +23,16 @@ export class CartService {
     });
   }
 
+  getCart(): Observable<CartProductEntry[]> {
+    return this.httpClient.get<CartProductEntry[]>('http://localhost:8000/cart');
+  }
+
   getCartProductEntry(productId: string): Observable<CartProductEntry> {
     return this.httpClient.get<CartProductEntry>(this.BASE_URL + '/' + productId);
+  }
+
+  removeCartEntry(cartEntryId: string) {
+    this.httpClient.delete(this.BASE_URL + '/' + cartEntryId).subscribe();
   }
 
   private productEntryExists(products: CartProductEntry[], productId: string): boolean {

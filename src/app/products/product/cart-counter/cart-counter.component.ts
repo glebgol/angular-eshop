@@ -7,8 +7,11 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 })
 export class CartCounterComponent {
   @Input() count: number = 1;
+  @Input() stock!: number;
+
   @Output() changedCount = new EventEmitter<number>();
   @Output() clicked = new EventEmitter<void>();
+
   isClicked: boolean = false;
 
   addToCartAndOpenCounter() {
@@ -26,7 +29,15 @@ export class CartCounterComponent {
     this.changedCount.emit(this.count)
   }
 
-  isDisabled() {
+  isDecrementDisabled() {
     return this.count == 0;
+  }
+
+  isOutOfStock() {
+    return this.count >= this.stock;
+  }
+
+  isZeroStock() {
+    return this.stock == 0;
   }
 }

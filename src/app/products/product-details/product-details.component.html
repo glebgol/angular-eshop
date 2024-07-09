@@ -4,7 +4,9 @@
   <p>{{product.price}}</p>
   <p>{{product.rating.rate}}</p>
   <p>{{product.id}}</p>
+  <p [appStockAvailabilityStyle]="product.stock">hiii</p>
   <app-cart-counter [count]="count"
+                    [stock]="product.stock"
                     (clicked)="addToCartAndSetCartProductCount()"
                     (changedCount)="updateProductQuantity($event)">
   </app-cart-counter>

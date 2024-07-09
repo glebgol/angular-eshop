@@ -22,7 +22,6 @@ export class ProductComponent {
   }
 
   addToCartAndSetCartProductCount() {
-    console.log(1)
     this.cartService.getCartProductEntry(this.product.id).subscribe(cartEntry => {
       this.count = cartEntry.count;
     }, () => {

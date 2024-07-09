@@ -1,0 +1,15 @@
+<table>
+  <tr>
+    <th>Product ID</th>
+    <th>Product Name</th>
+    <th>Count</th>
+    <th>Price</th>
+    <th>Total Price</th>
+    <th></th>
+  </tr>
+  <app-cart-entry *ngFor="let cartEntry of cartEntries"
+                  [cartEntry]="cartEntry"
+                  (removed)="removeCartEntry($event)">
+  </app-cart-entry>
+
+</table>

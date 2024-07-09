@@ -1,0 +1,44 @@
+<form *ngIf="product" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+  <label for="image">Image:</label>
+  <input type="text" id="image" name="image" [(ngModel)]="product.image" required>
+
+  <div
+    *ngIf="title.invalid && (title.dirty || title.touched)"
+    class="alert"
+  >
+    <div *ngIf="title.errors?.['required']">Name is required.</div>
+    <div *ngIf="title.errors?.['minlength']">
+      Name must be at least 4 characters long.
+    </div>
+    <div *ngIf="title.errors?.['forbiddenName']">
+      Name cannot be Bob.
+    </div>
+  </div>
+
+
+
+  <label for="title">Title:</label>
+  <input  type="text" id="title" name="title" [(ngModel)]="product.title" #title="ngModel" required>
+
+  <label for="price">Price:</label>
+  <div
+    *ngIf="price.invalid && (price.dirty || price.touched)"
+    class="alert"
+  >
+    <div *ngIf="price.errors?.['required']">Price is required.</div>
+  </div>
+  <div *ngIf="price.value && price.errors?.['priceInvalid']">
+    {{price.errors?.['priceInvalid']}}
+  </div>
+  <input appPriceInput type="number" id="price" name="price" [(ngModel)]="product.price" #price="ngModel" required>
+
+  <label for="stock">Number in stock:</label>
+  <input [min]="0" type="number" id="stock" name="stock" [(ngModel)]="product.stock" required>
+
+  <label for="description">Description:</label>
+  <input type="text" id="description" name="description" [value]="product.description" required>
+
+  <button [disabled]="!myForm.form.valid" type="submit">Submit</button>
+
+  <img [src]="product.image" height="400px" [alt]="product.title">
+</form>

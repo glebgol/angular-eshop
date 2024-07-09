@@ -21,4 +21,8 @@ export class ProductService {
   deleteProduct(productId: string): void {
     this.http.delete(`http://localhost:8000/products/${productId}`).subscribe();
   }
+
+  updateProduct(product: Product): void {
+    this.http.put('http://localhost:8000/products/' + product.id, product).subscribe();
+  }
 }

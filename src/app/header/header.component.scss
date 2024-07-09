@@ -1,0 +1,10 @@
+a {
+  display: block;
+  size: 50px;
+  flex-direction: row;
+}
+
+:host {
+  display: flex;
+  gap: 50px;
+}

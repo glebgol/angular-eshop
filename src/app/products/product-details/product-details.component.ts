@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {CartService} from "../../cart.service";
 import {Product} from "../product";
 import {ProductService} from "../product.service";
+import {StockAvailabilityStyleDirective} from "../product/stock-availability-style.directive";
 
 @Component({
   selector: 'app-product-details',
