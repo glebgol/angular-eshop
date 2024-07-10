@@ -1,0 +1,28 @@
+<div class="form">
+  <form [formGroup]="filtersForm" novalidate>
+    <div>
+      <label>Min Price</label><br>
+      <input type="number" name="minPrice" formControlName="minPrice"/>
+    </div>
+    <div>
+      <label>Max Price</label><br>
+      <input type="number" name="maxPrice" formControlName="maxPrice" />
+    </div>
+    <div>
+      <label>Min Rating</label><br>
+      <input type="number" name="minRating" formControlName="minRating"/>
+    </div>
+    <div>
+      <label>Max Rating</label><br>
+      <input type="number" name="maxRating" formControlName="maxRating" />
+    </div>
+    <div>
+      <label>In stock</label><br>
+      <input type="checkbox" name="inStock" formControlName="inStock"/>
+    </div>
+    <div>
+      <label>Has reviews</label><br>
+      <input type="checkbox" name="hasReviews" formControlName="hasReviews"/>
+    </div>
+  </form>
+</div>

@@ -111,46 +111,22 @@
   ],
   "cart": [
     {
-      "id": "2",
-      "title": "Moresque Gold Collection Sole Eau de Parfum, 50ml",
-      "count": 8,
-      "price": "287"
-    },
-    {
-      "id": "5",
-      "title": "Alexandre.J The Collector Golden Oud Eau de Parfum, 100ml",
-      "count": 1,
-      "price": 95
-    },
-    {
-      "id": "6",
-      "title": "Parfums de Marly Herod Eau de Parfum, 125ml",
-      "count": 5,
-      "price": 198
-    },
-    {
-      "id": "1",
-      "title": "Van Cleef & Arpels Extraordinaire Precious Oud Eau de Parfum, 75ml",
-      "count": 1,
-      "price": 93.5
-    },
-    {
       "id": "3",
       "title": "Vince Camuto Eterno Eau de Toilette, 100ml",
-      "count": 1,
+      "count": 28,
       "price": 286
+    },
+    {
+      "id": "2",
+      "title": "Moresque Gold Collection Sole Eau de Parfum, 50ml",
+      "count": 1,
+      "price": "287"
     },
     {
       "id": "4",
       "title": "Antonio Visconti Silver Wood Eau de Parfum, 100ml",
       "count": 1,
       "price": 175
-    },
-    {
-      "id": "7",
-      "title": "Aedes de Venustas Oeillet Bengale Eau de Parfum, 100ml",
-      "count": 1,
-      "price": 154
     }
   ],
   "users": [

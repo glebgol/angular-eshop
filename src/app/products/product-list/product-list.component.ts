@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {ProductService} from "../product.service";
 import {Product} from "../product";
 
@@ -8,13 +8,9 @@ import {Product} from "../product";
   styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent {
-  products!: Product[];
+  @Input() products!: Product[];
 
   constructor(private productService: ProductService) {
-  }
-
-  ngOnInit() {
-    this.productService.getProducts().subscribe(products => this.products = products);
   }
 
   onProductDelete(productId: string) {

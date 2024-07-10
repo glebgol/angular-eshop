@@ -1,7 +1,7 @@
 <div class="product__item">
   <img src="{{product.image}}" alt="">
   <a routerLink="/products/{{product.id}}"><p>{{product.title}}</p></a>
-<!--  <p>{{product.price}}</p>-->
+  <p>{{product.price}}</p>
 <!--  <p>{{product.rating.rate}}</p>-->
 <!--  <p>{{product.id}}</p>-->
   <app-cart-counter [count]="count"

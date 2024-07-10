@@ -64,7 +64,7 @@ export class CartService {
 
   private getNewCartEntry(product: Product, quantity: number): CartProductEntry {
     return {
-      id: product.id.toString(),
+      id: product.id,
       title: product.title,
       count: quantity,
       price: product.price

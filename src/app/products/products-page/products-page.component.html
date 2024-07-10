@@ -1,0 +1,4 @@
+<app-filters-form (changed)="getProducts($event)"></app-filters-form>
+<h1>{{amountOfProducts}}</h1>
+<app-delete-filter-badge (onBadgeDelete)="updateForm($event)" [badges]="filterBadges"></app-delete-filter-badge>
+<app-product-list [products]="products"></app-product-list>

@@ -1,0 +1,3 @@
+<div *ngFor="let badge of badges | keyvalue">
+  <button (click)="deleteFilter(badge.key)">{{badge.value}}</button>
+</div>

@@ -1,7 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Product} from "./product";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {FiltersForm} from "./FiltersForm";
+import {ReviewsService} from "../reviews.service";
+import {Review} from "../review";
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +27,9 @@ export class ProductService {
 
   updateProduct(product: Product): void {
     this.http.put('http://localhost:8000/products/' + product.id, product).subscribe();
+  }
+
+  private getProductIdsWithReview() {
+    this.http.get<Review[]>('http://localhost:8000/reviews')
   }
 }
