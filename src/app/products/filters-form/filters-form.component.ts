@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {ProductService} from "../product.service";
-import {ActivatedRoute, ActivatedRouteSnapshot, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FiltersForm} from "../FiltersForm";
 
 @Component({
@@ -18,13 +18,13 @@ export class FiltersFormComponent {
 
     const params = this.activatedRoute.snapshot.queryParams;
 
-    this.filtersForm = new FormGroup({
-      minPrice: new FormControl(params["minPrice"]),
-      maxPrice: new FormControl(params["maxPrice"]),
-      minRating: new FormControl(params["minRating"]),
-      maxRating: new FormControl(params["maxRating"]),
-      inStock: new FormControl(params["inStock"] == 'true'),
-      hasReviews: new FormControl(params["hasReviews"] == 'true'),
+    this.filtersForm = this.formBuilder.group({
+      minPrice: [params["minPrice"]],
+      maxPrice: [params["maxPrice"]],
+      minRating: [params["minRating"]],
+      maxRating: [params["maxRating"]],
+      inStock: [params["inStock"] == 'true'],
+      hasReviews: [params["hasReviews"] == 'true'],
     });
   }
 
@@ -107,5 +107,10 @@ export class FiltersFormComponent {
       });
       this.notify();
     });
+  }
+
+  resetForm() {
+    this.filtersForm.reset();
+    this.router.navigate([])
   }
 }
