@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, HostListener, ViewChild} from '@angular/core';
 import {ProductService} from "../product.service";
 import {Product} from "../product";
 import {FiltersForm} from "../FiltersForm";
@@ -6,6 +6,7 @@ import {FiltersFormComponent} from "../filters-form/filters-form.component";
 import {ReviewsService} from "../../reviews.service";
 import {Review} from "../../review";
 import {ActivatedRoute, Router} from "@angular/router";
+import {BackService} from "../../back.service";
 
 @Component({
   selector: 'app-products-page',
@@ -21,7 +22,9 @@ export class ProductsPageComponent {
   form!: FiltersFormComponent;
 
   constructor(private productService: ProductService, private reviewsService: ReviewsService,
-              private activatedRoute: ActivatedRoute, private router: Router) {
+              private activatedRoute: ActivatedRoute, private router: Router,
+              private back: BackService) {
+    this.performHardReloadWhenBackButtonClicked();
   }
 
   getProducts(formData: FiltersForm) {
@@ -30,6 +33,19 @@ export class ProductsPageComponent {
       this.filterProducts(formData);
       this.applyFilterBadges(formData);
     });
+  }
+
+  updateForm(id: string) {
+    let queryParams = {
+      [id]: null
+    };
+
+    this.router.navigate([], {
+      queryParams: queryParams,
+      queryParamsHandling: 'merge',
+    });
+
+    this.form.filtersForm.get(id)?.reset()
   }
 
   private filterProducts(formData: FiltersForm) {
@@ -60,19 +76,6 @@ export class ProductsPageComponent {
       })
     }
 
-  }
-
-  updateForm(id: string) {
-    let queryParams = {
-      [id]: null
-    };
-
-    this.router.navigate([], {
-      queryParams: queryParams,
-      queryParamsHandling: 'merge',
-    });
-
-    this.form.filtersForm.get(id)?.reset()
   }
 
   private applyFilterBadges(formData: FiltersForm) {
@@ -115,5 +118,20 @@ export class ProductsPageComponent {
     } else {
       this.filterBadges.delete('minRating')
     }
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: any) {
+    this.back.setParam(true);
+  }
+
+  private performHardReloadWhenBackButtonClicked() {
+    this.back.sharedData.subscribe(result => {
+      console.log(result);
+      if (result) {
+        window.location.reload();
+        this.back.setParam(false);
+      }
+    });
   }
 }
