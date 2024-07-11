@@ -49,6 +49,23 @@ export class ProductsPageComponent {
   }
 
   private filterProducts(formData: FiltersForm) {
+    this.products = this.products
+      .filter(product => !formData.inStock || product.stock > 0)
+      .filter(p => (!formData.maxPrice || p.price <= formData.maxPrice)
+        && (formData.maxPrice != 0 || p.price == 0))
+      .filter(p => !formData.minPrice || p.price >= formData.minPrice)
+      .filter(p => (!formData.maxRating || p.rating.rate <= formData.maxRating)
+        && (formData.maxRating != 0 || p.rating.rate == 0))
+      .filter(p => !formData.minRating || p.rating.rate >= formData.minRating)
+
+    if (formData.hasReviews) {
+      this.reviewsService.getAllReviews().subscribe((reviews: Review[]) => {
+        this.products = this.products.filter(p => reviews.find(review => review.productId == p.id));
+      })
+    }
+  }
+
+  private filterProducts2(formData: FiltersForm) {
     if (formData.inStock) {
       this.products = this.products.filter(product => product.stock > 0);
     }

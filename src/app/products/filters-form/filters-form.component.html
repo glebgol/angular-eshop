@@ -2,19 +2,19 @@
   <form [formGroup]="filtersForm" novalidate>
     <div>
       <label>Min Price</label><br>
-      <input type="number" name="minPrice" formControlName="minPrice"/>
+      <input type="number" name="minPrice" formControlName="minPrice" [min]="0" oninput="validity.valid||(value='');"/>
     </div>
     <div>
       <label>Max Price</label><br>
-      <input type="number" name="maxPrice" formControlName="maxPrice" />
+      <input type="number" name="maxPrice" formControlName="maxPrice" oninput="validity.valid||(value='');"/>
     </div>
     <div>
       <label>Min Rating</label><br>
-      <input type="number" name="minRating" formControlName="minRating"/>
+      <input type="number" name="minRating" formControlName="minRating" oninput="validity.valid||(value='');"/>
     </div>
     <div>
       <label>Max Rating</label><br>
-      <input type="number" name="maxRating" formControlName="maxRating" />
+      <input type="number" name="maxRating" formControlName="maxRating" oninput="validity.valid||(value='');"/>
     </div>
     <div>
       <label>In stock</label><br>
