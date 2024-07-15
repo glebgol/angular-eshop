@@ -21,6 +21,7 @@ import { PriceInputDirective } from './products/price-input.directive';
 import { ProductsPageComponent } from './products/products-page/products-page.component';
 import { FiltersFormComponent } from './products/filters-form/filters-form.component';
 import { DeleteFilterBadgeComponent } from './products/delete-filter-badge/delete-filter-badge.component';
+import { SearchInputComponent } from './search-input/search-input.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { DeleteFilterBadgeComponent } from './products/delete-filter-badge/delet
     PriceInputDirective,
     FiltersFormComponent,
     DeleteFilterBadgeComponent,
+    SearchInputComponent,
   ],
   imports: [
     BrowserModule,

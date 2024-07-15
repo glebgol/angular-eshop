@@ -1,4 +1,8 @@
-<app-filters-form (changed)="getProducts($event)"></app-filters-form>
-<h1>{{amountOfProducts}}</h1>
-<app-delete-filter-badge (onBadgeDelete)="updateForm($event)" [badges]="filterBadges"></app-delete-filter-badge>
-<app-product-list [products]="products"></app-product-list>
+<div class="wrapper">
+  <app-filters-form class="form" (formDataChanged)="getProducts($event)"></app-filters-form>
+  <div class="main">
+    <p *ngIf="isProductsFetched">Products found: {{products.length}}</p>
+    <app-delete-filter-badge (onBadgeDelete)="deleteFormParam($event)" [badges]="filterBadges"></app-delete-filter-badge>
+    <app-product-list *ngIf="isProductsFetched" [products]="products"></app-product-list>
+  </div>
+</div>

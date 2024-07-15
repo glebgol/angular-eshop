@@ -1,8 +1,34 @@
-:host {
+.wrapper {
   display: flex;
   flex-direction: row;
+  height: 100%;
 }
 
 .form {
+  padding: 30px 0 30px 10px;
+  margin-bottom: auto;
 
+  position: sticky;
+  position: -webkit-sticky;
+  overflow: auto;
+
+  top: 100px;
+  width: 200px;
+  height: 100%;
+  background: #a7e9c5;
+  color: #48793c;
+
+  font-size: 25px;
 }
+
+.main {
+  border: 1px solid;
+  width: calc(100% - 200px);
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 10px;
+  position: relative;
+}
+

@@ -17,7 +17,7 @@ export class ProductsPageComponent {
   products!: Product[];
   amountOfProducts!: number;
   filterBadges: Map<string, string> = new Map();
-
+  isProductsFetched: boolean = false;
   @ViewChild(FiltersFormComponent)
   form!: FiltersFormComponent;
 
@@ -27,29 +27,36 @@ export class ProductsPageComponent {
     this.performHardReloadWhenBackButtonClicked();
   }
 
+  ngAfterViewInit() {
+    this.filterProductsOnSearchChange();
+    this.getProducts(this.form.getFormData());
+  }
+
   getProducts(formData: FiltersForm) {
+    this.isProductsFetched = false;
     this.productService.getProducts().subscribe(products => {
-      this.products = products
-      this.filterProducts(formData);
+      console.log(formData)
+      this.filterProducts(products, formData);
       this.applyFilterBadges(formData);
     });
   }
 
-  updateForm(id: string) {
-    let queryParams = {
-      [id]: null
-    };
-
+  deleteFormParam(id: string) {
     this.router.navigate([], {
-      queryParams: queryParams,
+      queryParams: {
+        [id]: null
+      },
       queryParamsHandling: 'merge',
     });
 
     this.form.filtersForm.get(id)?.reset()
   }
 
-  private filterProducts(formData: FiltersForm) {
-    this.products = this.products
+  private filterProducts(products: Product[], formData: FiltersForm): void {
+    this.isProductsFetched = false;
+    const searchParam = this.activatedRoute.snapshot.queryParams['search'];
+
+    this.products = products
       .filter(product => !formData.inStock || product.stock > 0)
       .filter(p => (!formData.maxPrice || p.price <= formData.maxPrice)
         && (formData.maxPrice != 0 || p.price == 0))
@@ -57,45 +64,30 @@ export class ProductsPageComponent {
       .filter(p => (!formData.maxRating || p.rating.rate <= formData.maxRating)
         && (formData.maxRating != 0 || p.rating.rate == 0))
       .filter(p => !formData.minRating || p.rating.rate >= formData.minRating)
+      .filter(p => !searchParam || p.title.toLowerCase()
+        .includes(searchParam.toLowerCase()))
 
     if (formData.hasReviews) {
       this.reviewsService.getAllReviews().subscribe((reviews: Review[]) => {
         this.products = this.products.filter(p => reviews.find(review => review.productId == p.id));
-      })
+      }).add(() => this.setProductsAmount())
+    } else {
+      this.setProductsAmount();
     }
   }
 
-  private filterProducts2(formData: FiltersForm) {
-    if (formData.inStock) {
-      this.products = this.products.filter(product => product.stock > 0);
-    }
-    if (formData.maxPrice == 0) {
-      this.products = this.products.filter(p => p.price == 0);
-    }
-    if (formData.maxPrice) {
-      this.products = this.products.filter(p => p.price <= formData.maxPrice);
-    }
-    if (formData.minPrice) {
-      this.products = this.products.filter(p => p.price >= formData.minPrice);
-    }
-    if (formData.maxRating == 0) {
-      this.products = this.products.filter(p => p.rating.rate == 0);
-    }
-    if (formData.maxRating) {
-      this.products = this.products.filter(p => p.rating.rate <= formData.maxRating);
-    }
-    if (formData.minRating) {
-      this.products = this.products.filter(p => p.rating.rate >= formData.minRating);
-    }
-    if (formData.hasReviews) {
-      this.reviewsService.getAllReviews().subscribe((reviews: Review[]) => {
-        this.products = this.products.filter(p => reviews.find(review => review.productId == p.id));
-      })
-    }
-
+  private filterProductsOnSearchChange() {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.getProducts(this.form.getFormData());
+    });
   }
 
-  private applyFilterBadges(formData: FiltersForm) {
+  private setProductsAmount(): void {
+    this.isProductsFetched = true;
+    this.amountOfProducts = this.products.length
+  }
+
+  private applyFilterBadges(formData: FiltersForm): void {
     if (formData.inStock) {
       this.filterBadges.set('inStock', 'In Stock')
     } else {
@@ -116,7 +108,9 @@ export class ProductsPageComponent {
       this.filterBadges.delete('maxPrice')
     }
 
-    if (formData.minPrice) {
+    if (formData.minPrice == 0) {
+      this.filterBadges.set('minPrice', 'Min Price 0')
+    } else if (formData.minPrice) {
       this.filterBadges.set('minPrice', 'Min Price ' + formData.minPrice)
     } else {
       this.filterBadges.delete('minPrice')
@@ -130,7 +124,9 @@ export class ProductsPageComponent {
       this.filterBadges.delete('maxRating')
     }
 
-    if (formData.minRating) {
+    if (formData.minRating == 0) {
+      this.filterBadges.set('minRating', 'Min Rating 0')
+    } else if (formData.minRating) {
       this.filterBadges.set('minRating', 'Min Rating ' + formData.minRating)
     } else {
       this.filterBadges.delete('minRating')
@@ -144,7 +140,6 @@ export class ProductsPageComponent {
 
   private performHardReloadWhenBackButtonClicked() {
     this.back.sharedData.subscribe(result => {
-      console.log(result);
       if (result) {
         window.location.reload();
         this.back.setParam(false);
