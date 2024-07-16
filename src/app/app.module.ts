@@ -22,7 +22,6 @@ import { ProductsPageComponent } from './products/products-page/products-page.co
 import { FiltersFormComponent } from './products/filters-form/filters-form.component';
 import { DeleteFilterBadgeComponent } from './products/delete-filter-badge/delete-filter-badge.component';
 import { SearchInputComponent } from './search-input/search-input.component';
-import { PreventNegativeNumberDirective } from './prevent-negative-number.directive';
 
 
 @NgModule({
@@ -45,7 +44,6 @@ import { PreventNegativeNumberDirective } from './prevent-negative-number.direct
     FiltersFormComponent,
     DeleteFilterBadgeComponent,
     SearchInputComponent,
-    PreventNegativeNumberDirective,
   ],
   imports: [
     BrowserModule,

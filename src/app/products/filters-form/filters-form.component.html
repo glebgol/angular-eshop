@@ -1,31 +1,35 @@
 <div class="form2">
   <form [formGroup]="filtersForm" novalidate>
     <div>
-      <label>Min Price</label><br>
-      <input name="minPrice" formControlName="minPrice" pattern="[0-9]*[\/]?[0-9]+" oninput="this.reportValidity()"/>
+      <label>Min Price</label>
+      <div *ngIf="minPrice?.hasError('min')" style="color: red; font-size: 15px;">Price should be > 0</div>
+      <div *ngIf="minPrice?.hasError('notNumber')" style="color: red">Not a number</div>
+      <input type="text" name="minPrice" formControlName="minPrice">
     </div>
     <div>
-      <label>Max Price</label><br>
-      <input appPreventNegativeNumber [allowFractions]="true" type="text" name="maxPrice" formControlName="maxPrice" [min]="-1"/>
-    </div>
-    <div *ngIf="filtersForm.get('maxPrice')?.hasError('preventNegativeNumber')" style="color: red">
-       Negative
-    </div>
-
-    <div>
-      <label>Min Rating</label><br>
-      <input type="number" name="minRating" formControlName="minRating" oninput="validity.valid||(value='');"/>
+      <label>Max Price</label>
+      <div *ngIf="maxPrice?.hasError('min')" style="color: red; font-size: 15px;">Price should be > 0</div>
+      <div *ngIf="maxPrice?.hasError('notNumber')" style="color: red">Not a number</div>
+      <input type="text" name="maxPrice" formControlName="maxPrice"/>
     </div>
     <div>
-      <label>Max Rating</label><br>
-      <input type="number" name="maxRating" formControlName="maxRating" oninput="validity.valid||(value='');"/>
+      <label>Min Rating</label>
+      <div *ngIf="minRating?.hasError('min')" style="color: red; font-size: 15px;">Price should be > 0</div>
+      <div *ngIf="minRating?.hasError('notNumber')" style="color: red">Not a number</div>
+      <input type="text" name="minRating" formControlName="minRating"/>
     </div>
     <div>
-      <label>In stock</label><br>
+      <label>Max Rating</label>
+      <div *ngIf="maxRating?.hasError('min')" style="color: red; font-size: 15px;">Price should be > 0</div>
+      <div *ngIf="maxRating?.hasError('notNumber')" style="color: red">Not a number</div>
+      <input type="text" name="maxRating" formControlName="maxRating"/>
+    </div>
+    <div>
+      <label>In stock</label>
       <input type="checkbox" name="inStock" formControlName="inStock"/>
     </div>
     <div>
-      <label>Has reviews</label><br>
+      <label>Has reviews</label>
       <input type="checkbox" name="hasReviews" formControlName="hasReviews"/>
     </div>
   </form>

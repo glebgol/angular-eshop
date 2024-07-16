@@ -1,8 +1,16 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
 import {ProductService} from "../product.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FiltersForm} from "../FiltersForm";
+import {CustomValidators} from "../CustomValidators";
 
 @Component({
   selector: 'app-filters-form',
@@ -10,7 +18,7 @@ import {FiltersForm} from "../FiltersForm";
   styleUrl: './filters-form.component.scss'
 })
 export class FiltersFormComponent {
-  filtersForm!: FormGroup;
+  filtersForm: FormGroup;
   @Output() formDataChanged = new EventEmitter<FiltersForm>();
 
   constructor(private productService: ProductService, private formBuilder: FormBuilder,
@@ -22,10 +30,10 @@ export class FiltersFormComponent {
     this.filtersForm.valueChanges.subscribe((valueChanges) => {
       this.router.navigate([], {
         queryParams: {
-          minPrice: this.filtersForm.get('minPrice')?.invalid ? null : valueChanges.minPrice,
-          maxPrice: this.filtersForm.get('maxPrice')?.invalid ? null : valueChanges.maxPrice,
-          minRating: valueChanges.minRating,
-          maxRating: valueChanges.maxRating,
+          minPrice: this.getNumberParamFromForm(valueChanges, 'minPrice'),
+          maxPrice: this.getNumberParamFromForm(valueChanges, 'maxPrice'),
+          minRating: this.getNumberParamFromForm(valueChanges, 'minRating'),
+          maxRating: this.getNumberParamFromForm(valueChanges, 'maxRating'),
           hasReviews: valueChanges.hasReviews ? valueChanges.hasReviews : null,
           inStock: valueChanges.inStock ? valueChanges.inStock : null,
         },
@@ -33,6 +41,11 @@ export class FiltersFormComponent {
       });
       this.notifyFormDataChanged();
     })
+  }
+
+  //todo refactor
+  getNumberParamFromForm(valueChanges: any, name: string) {
+    return this.filtersForm.get(name)?.invalid ? null : (Number(valueChanges[name]) >= 0 ? (valueChanges[name] === '' ? null: valueChanges[name]) : null);
   }
 
   notifyFormDataChanged() {
@@ -44,11 +57,12 @@ export class FiltersFormComponent {
   }
 
   getFormData(): FiltersForm {
+    console.log(this.maxPrice?.value)
     return {
-      minPrice: this.filtersForm.get('minPrice')?.value,
-      maxPrice: this.filtersForm.get('maxPrice')?.value,
-      minRating: this.filtersForm.get('minRating')?.value,
-      maxRating: this.filtersForm.get('maxRating')?.value,
+      minPrice: this.getNumber(this.minPrice?.value),
+      maxPrice: this.getNumber(this.filtersForm.get('maxPrice')?.value),
+      minRating: this.getNumber(this.filtersForm.get('minRating')?.value),
+      maxRating: this.getNumber(this.filtersForm.get('maxRating')?.value),
       inStock: !!this.filtersForm.get('inStock')?.value,
       hasReviews: !!this.filtersForm.get('hasReviews')?.value,
 
@@ -56,9 +70,15 @@ export class FiltersFormComponent {
       maxPriceInvalid: !!this.filtersForm.get('maxPrice')?.invalid,
       minRatingInvalid: !!this.filtersForm.get('minRating')?.invalid,
       maxRatingInvalid: !!this.filtersForm.get('maxRating')?.invalid,
-      inStockInvalid: !!this.filtersForm.get('inStock')?.invalid,
-      hasReviewsInvalid: !!this.filtersForm.get('hasReviews')?.invalid,
     }
+  }
+
+  private getNumber(value: any): number | null {
+    if (value === '' || value === null) {
+      return null;
+    }
+
+    return Number(value);
   }
 
   isFormEmpty(): boolean {
@@ -70,14 +90,39 @@ export class FiltersFormComponent {
 
   private createFiltersForm() {
     const params = this.activatedRoute.snapshot.queryParams;
+    const validators: ValidatorFn[] = [Validators.min(0), CustomValidators.numberValidator()];
 
     return this.formBuilder.group({
-      minPrice: params["minPrice"] ? Number([params["minPrice"]]) : null,
-      maxPrice: [params["maxPrice"] ? Number([params["maxPrice"]]) : null, [Validators.min(0)]],
-      minRating: params["minRating"] ? Number([params["minRating"]]) : null,
-      maxRating: params["maxRating"] ? Number([params["maxRating"]]) : null,
-      inStock: [params["inStock"] == 'true'],
-      hasReviews: [params["hasReviews"] == 'true'],
+      minPrice: [this.getNumberParam(params, 'minPrice'), validators],
+      maxPrice: [this.getNumberParam(params, 'maxPrice'), validators],
+      minRating: [this.getNumberParam(params, 'minRating'), validators],
+      maxRating: [this.getNumberParam(params, 'maxRating'), validators],
+      inStock: [this.getBooleanParam(params, 'inStock')],
+      hasReviews: [this.getBooleanParam(params, 'hasReviews')],
     });
+  }
+
+  private getNumberParam(params: Params, name: string): number | null {
+    return params[name] ? Number([params[name]]) : null;
+  }
+
+  private getBooleanParam(params: Params, name: string): boolean {
+    return params[name] == 'true';
+  }
+
+  public get minPrice() {
+    return this.filtersForm.get('minPrice');
+  }
+
+  public get maxPrice() {
+    return this.filtersForm.get('maxPrice');
+  }
+
+  public get minRating() {
+    return this.filtersForm.get('minRating');
+  }
+
+  public get maxRating() {
+    return this.filtersForm.get('maxRating');
   }
 }

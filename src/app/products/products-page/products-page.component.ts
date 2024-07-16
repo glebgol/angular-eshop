@@ -52,15 +52,19 @@ export class ProductsPageComponent {
 
   private filterProducts(products: Product[], formData: FiltersForm): void {
     this.isProductsFetched = false;
+
     const searchParam = this.activatedRoute.snapshot.queryParams['search'];
-    console.log(formData.maxPriceInvalid)
+
+    //todo introduce mini private methods for filtering lambdas
     this.products = products
-      .filter(product => formData.inStockInvalid || !formData.inStock || product.stock > 0)
-      .filter(p => formData.maxPriceInvalid || ((!formData.maxPrice || p.price <= formData.maxPrice)
+      .filter(product => !formData.inStock || product.stock > 0)
+      .filter(p => formData.maxPriceInvalid || (!Number(formData.maxPrice) && Number(formData.maxPrice) != 0) ||
+        ((!formData.maxPrice || p.price <= Number(formData.maxPrice))
         && (formData.maxPrice != 0 || p.price == 0)))
-      .filter(p => !formData.minPrice || p.price >= formData.minPrice)
-      .filter(p => (!formData.maxRating || p.rating.rate <= formData.maxRating)
-        && (formData.maxRating != 0 || p.rating.rate == 0))
+      .filter(p => formData.minPriceInvalid || !Number(formData.minPrice) || !formData.minPrice
+        || p.price >= Number(formData.minPrice))
+      .filter(p => formData.maxRatingInvalid || ((!formData.maxRating || p.rating.rate <= formData.maxRating)
+        && (formData.maxRating != 0 || p.rating.rate == 0)))
       .filter(p => !formData.minRating || p.rating.rate >= formData.minRating)
       .filter(p => !searchParam || p.title.toLowerCase()
         .includes(searchParam.toLowerCase()))
@@ -74,12 +78,15 @@ export class ProductsPageComponent {
     }
   }
 
+  //todo delete
   private filterProductsOnQueryParamsChange() {
     this.activatedRoute.queryParams.subscribe((params) => {
+      console.log(this.form.getFormData())
       this.getProducts(this.form.getFormData());
     });
   }
 
+  //todo delete
   private setProductsAmount(): void {
     this.isProductsFetched = true;
     this.amountOfProducts = this.products.length
@@ -108,7 +115,7 @@ export class ProductsPageComponent {
 
     if (formData.minPrice == 0) {
       this.filterBadges.set('minPrice', 'Min Price 0')
-    } else if (formData.minPrice) {
+    } else if (!formData.minPriceInvalid && formData.minPrice) {
       this.filterBadges.set('minPrice', 'Min Price ' + formData.minPrice)
     } else {
       this.filterBadges.delete('minPrice')
@@ -116,7 +123,7 @@ export class ProductsPageComponent {
 
     if (formData.maxRating == 0) {
       this.filterBadges.set('maxRating', 'Max Rating 0')
-    } else if (formData.maxRating) {
+    } else if (!formData.maxRatingInvalid && formData.maxRating) {
       this.filterBadges.set('maxRating', 'Max Rating ' + formData.maxRating)
     } else {
       this.filterBadges.delete('maxRating')
@@ -124,7 +131,7 @@ export class ProductsPageComponent {
 
     if (formData.minRating == 0) {
       this.filterBadges.set('minRating', 'Min Rating 0')
-    } else if (formData.minRating) {
+    } else if (!formData.minRatingInvalid && formData.minRating) {
       this.filterBadges.set('minRating', 'Min Rating ' + formData.minRating)
     } else {
       this.filterBadges.delete('minRating')

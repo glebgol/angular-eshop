@@ -1,8 +1,8 @@
 export interface FiltersForm {
-  minPrice: number,
-  maxPrice: number,
-  minRating: number,
-  maxRating: number,
+  minPrice: number | null,
+  maxPrice: number | null,
+  minRating: number | null,
+  maxRating: number | null,
   inStock: boolean,
   hasReviews: boolean,
 
@@ -10,6 +10,4 @@ export interface FiltersForm {
   maxPriceInvalid: boolean,
   minRatingInvalid: boolean,
   maxRatingInvalid: boolean,
-  inStockInvalid: boolean,
-  hasReviewsInvalid: boolean,
 }

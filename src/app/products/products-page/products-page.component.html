@@ -1,8 +1,12 @@
 <div class="wrapper">
-  <app-filters-form class="form" (formDataChanged)="getProducts($event)"></app-filters-form>
+  <app-filters-form class="form"></app-filters-form>
   <div class="main">
-    <p *ngIf="isProductsFetched">Products found: {{products.length}}</p>
-    <app-delete-filter-badge (onBadgeDelete)="deleteFormParam($event)" [badges]="filterBadges"></app-delete-filter-badge>
+    <div style="background: #a7e9c5; margin-bottom: 20px">
+      <p *ngIf="isProductsFetched">Products found: {{products.length}}</p>
+    </div>
+    <app-delete-filter-badge style="margin-bottom: 10px" (onBadgeDelete)="deleteFormParam($event)" [badges]="filterBadges"></app-delete-filter-badge>
+
     <app-product-list *ngIf="isProductsFetched" [products]="products"></app-product-list>
   </div>
+  <h1 *ngIf="!isProductsFetched">test</h1>
 </div>
