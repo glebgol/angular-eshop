@@ -2,12 +2,16 @@
   <form [formGroup]="filtersForm" novalidate>
     <div>
       <label>Min Price</label><br>
-      <input type="number" name="minPrice" formControlName="minPrice" [min]="0" oninput="validity.valid||(value='');"/>
+      <input name="minPrice" formControlName="minPrice" pattern="[0-9]*[\/]?[0-9]+" oninput="this.reportValidity()"/>
     </div>
     <div>
       <label>Max Price</label><br>
-      <input type="number" name="maxPrice" formControlName="maxPrice" oninput="validity.valid||(value='');"/>
+      <input appPreventNegativeNumber [allowFractions]="true" type="text" name="maxPrice" formControlName="maxPrice" [min]="-1"/>
     </div>
+    <div *ngIf="filtersForm.get('maxPrice')?.hasError('preventNegativeNumber')" style="color: red">
+       Negative
+    </div>
+
     <div>
       <label>Min Rating</label><br>
       <input type="number" name="minRating" formControlName="minRating" oninput="validity.valid||(value='');"/>

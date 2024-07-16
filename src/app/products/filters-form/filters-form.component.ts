@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ProductService} from "../product.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FiltersForm} from "../FiltersForm";
@@ -16,15 +16,14 @@ export class FiltersFormComponent {
   constructor(private productService: ProductService, private formBuilder: FormBuilder,
               private activatedRoute: ActivatedRoute, private router: Router) {
     this.filtersForm = this.createFiltersForm();
-    console.log(this.filtersForm)
   }
 
   ngOnInit() {
     this.filtersForm.valueChanges.subscribe((valueChanges) => {
       this.router.navigate([], {
         queryParams: {
-          minPrice: valueChanges.minPrice,
-          maxPrice: valueChanges.maxPrice,
+          minPrice: this.filtersForm.get('minPrice')?.invalid ? null : valueChanges.minPrice,
+          maxPrice: this.filtersForm.get('maxPrice')?.invalid ? null : valueChanges.maxPrice,
           minRating: valueChanges.minRating,
           maxRating: valueChanges.maxRating,
           hasReviews: valueChanges.hasReviews ? valueChanges.hasReviews : null,
@@ -51,7 +50,14 @@ export class FiltersFormComponent {
       minRating: this.filtersForm.get('minRating')?.value,
       maxRating: this.filtersForm.get('maxRating')?.value,
       inStock: !!this.filtersForm.get('inStock')?.value,
-      hasReviews: !!this.filtersForm.get('hasReviews')?.value
+      hasReviews: !!this.filtersForm.get('hasReviews')?.value,
+
+      minPriceInvalid: !!this.filtersForm.get('minPrice')?.invalid,
+      maxPriceInvalid: !!this.filtersForm.get('maxPrice')?.invalid,
+      minRatingInvalid: !!this.filtersForm.get('minRating')?.invalid,
+      maxRatingInvalid: !!this.filtersForm.get('maxRating')?.invalid,
+      inStockInvalid: !!this.filtersForm.get('inStock')?.invalid,
+      hasReviewsInvalid: !!this.filtersForm.get('hasReviews')?.invalid,
     }
   }
 
@@ -67,7 +73,7 @@ export class FiltersFormComponent {
 
     return this.formBuilder.group({
       minPrice: params["minPrice"] ? Number([params["minPrice"]]) : null,
-      maxPrice: params["maxPrice"] ? Number([params["maxPrice"]]) : null,
+      maxPrice: [params["maxPrice"] ? Number([params["maxPrice"]]) : null, [Validators.min(0)]],
       minRating: params["minRating"] ? Number([params["minRating"]]) : null,
       maxRating: params["maxRating"] ? Number([params["maxRating"]]) : null,
       inStock: [params["inStock"] == 'true'],

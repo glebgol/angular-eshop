@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import {ProductService} from "../products/product.service";
-import {FormBuilder} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -9,19 +7,21 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrl: './search-input.component.scss'
 })
 export class SearchInputComponent {
-  search: {text: string} = { text: '' };
 
-  constructor(private productService: ProductService, private formBuilder: FormBuilder,
-              private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
   }
 
-  doSearch(myForm: any) {
-    console.log(this.search)
+  doSearch(searchText: string) {
     this.router.navigate(['products'], {
       queryParams: {
-        search: this.search.text ? this.search.text : null
+        search: searchText ? searchText : null
       },
       queryParamsHandling: 'merge',
     });
+  }
+
+  getSearchValue() {
+    const value = this.route.snapshot.queryParams['search'];
+    return value ? value: null;
   }
 }

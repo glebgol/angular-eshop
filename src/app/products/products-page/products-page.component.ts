@@ -28,14 +28,12 @@ export class ProductsPageComponent {
   }
 
   ngAfterViewInit() {
-    this.filterProductsOnSearchChange();
-    this.getProducts(this.form.getFormData());
+    this.filterProductsOnQueryParamsChange();
   }
 
   getProducts(formData: FiltersForm) {
     this.isProductsFetched = false;
     this.productService.getProducts().subscribe(products => {
-      console.log(formData)
       this.filterProducts(products, formData);
       this.applyFilterBadges(formData);
     });
@@ -55,11 +53,11 @@ export class ProductsPageComponent {
   private filterProducts(products: Product[], formData: FiltersForm): void {
     this.isProductsFetched = false;
     const searchParam = this.activatedRoute.snapshot.queryParams['search'];
-
+    console.log(formData.maxPriceInvalid)
     this.products = products
-      .filter(product => !formData.inStock || product.stock > 0)
-      .filter(p => (!formData.maxPrice || p.price <= formData.maxPrice)
-        && (formData.maxPrice != 0 || p.price == 0))
+      .filter(product => formData.inStockInvalid || !formData.inStock || product.stock > 0)
+      .filter(p => formData.maxPriceInvalid || ((!formData.maxPrice || p.price <= formData.maxPrice)
+        && (formData.maxPrice != 0 || p.price == 0)))
       .filter(p => !formData.minPrice || p.price >= formData.minPrice)
       .filter(p => (!formData.maxRating || p.rating.rate <= formData.maxRating)
         && (formData.maxRating != 0 || p.rating.rate == 0))
@@ -76,7 +74,7 @@ export class ProductsPageComponent {
     }
   }
 
-  private filterProductsOnSearchChange() {
+  private filterProductsOnQueryParamsChange() {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.getProducts(this.form.getFormData());
     });
@@ -102,7 +100,7 @@ export class ProductsPageComponent {
 
     if (formData.maxPrice == 0) {
       this.filterBadges.set('maxPrice', 'Max Price 0')
-    } else if (formData.maxPrice) {
+    } else if (!formData.maxPriceInvalid && formData.maxPrice) {
       this.filterBadges.set('maxPrice', 'Max Price ' + formData.maxPrice)
     } else {
       this.filterBadges.delete('maxPrice')
