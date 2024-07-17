@@ -13,7 +13,7 @@ import {NgForm} from "@angular/forms";
 export class EditProductComponent {
   id: string = '1';
   product!: Product;
-
+  isSubmitted: boolean = false;
   constructor(activateRoute: ActivatedRoute, private productService: ProductService) {
     this.id = activateRoute.snapshot.params["id"];
     this.productService.getProductById(this.id).subscribe((product => {
@@ -28,9 +28,7 @@ export class EditProductComponent {
   }
 
   onSubmit(form: NgForm) {
-    // Form submission logic
-    // console.log(form.value);
-
+    this.isSubmitted = true;
     this.productService.updateProduct(this.product);
   }
 }

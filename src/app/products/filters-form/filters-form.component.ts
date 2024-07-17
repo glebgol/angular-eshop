@@ -1,16 +1,13 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
-  ValidationErrors,
   ValidatorFn,
   Validators
 } from "@angular/forms";
 import {ProductService} from "../product.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FiltersForm} from "../FiltersForm";
-import {CustomValidators} from "../CustomValidators";
 
 @Component({
   selector: 'app-filters-form',
@@ -57,7 +54,6 @@ export class FiltersFormComponent {
   }
 
   getFormData(): FiltersForm {
-    console.log(this.maxPrice?.value)
     return {
       minPrice: this.getNumber(this.minPrice?.value),
       maxPrice: this.getNumber(this.filtersForm.get('maxPrice')?.value),
@@ -90,7 +86,7 @@ export class FiltersFormComponent {
 
   private createFiltersForm() {
     const params = this.activatedRoute.snapshot.queryParams;
-    const validators: ValidatorFn[] = [Validators.min(0), CustomValidators.numberValidator()];
+    const validators: ValidatorFn[] = [Validators.min(0)];
 
     return this.formBuilder.group({
       minPrice: [this.getNumberParam(params, 'minPrice'), validators],

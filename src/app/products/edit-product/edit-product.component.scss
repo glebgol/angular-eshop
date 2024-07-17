@@ -1,10 +1,24 @@
 input {
   display: block;
-  margin-bottom: 15px;
+  width: 400px;
 }
 
-img {
-  position: absolute;
-  left: 500px;
-  top: 100px;
+textarea {
+  display: block;
+  width: 400px;
+  resize: vertical; max-height: 300px; min-height: 100px;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+}
+
+* {
+  margin: 5px;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: row;
 }

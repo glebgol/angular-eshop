@@ -7,6 +7,7 @@ import {ReviewsService} from "../../reviews.service";
 import {Review} from "../../review";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BackService} from "../../back.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-products-page',
@@ -15,7 +16,6 @@ import {BackService} from "../../back.service";
 })
 export class ProductsPageComponent {
   products!: Product[];
-  amountOfProducts!: number;
   filterBadges: Map<string, string> = new Map();
   isProductsFetched: boolean = false;
   @ViewChild(FiltersFormComponent)
@@ -28,7 +28,9 @@ export class ProductsPageComponent {
   }
 
   ngAfterViewInit() {
-    this.filterProductsOnQueryParamsChange();
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.getProducts(this.form.getFormData());
+    });
   }
 
   getProducts(formData: FiltersForm) {
@@ -47,7 +49,7 @@ export class ProductsPageComponent {
       queryParamsHandling: 'merge',
     });
 
-    this.form.filtersForm.get(id)?.reset()
+    this.form.filtersForm.get(id)?.reset();
   }
 
   private filterProducts(products: Product[], formData: FiltersForm): void {
@@ -55,41 +57,55 @@ export class ProductsPageComponent {
 
     const searchParam = this.activatedRoute.snapshot.queryParams['search'];
 
-    //todo introduce mini private methods for filtering lambdas
     this.products = products
-      .filter(product => !formData.inStock || product.stock > 0)
-      .filter(p => formData.maxPriceInvalid || (!Number(formData.maxPrice) && Number(formData.maxPrice) != 0) ||
-        ((!formData.maxPrice || p.price <= Number(formData.maxPrice))
-        && (formData.maxPrice != 0 || p.price == 0)))
-      .filter(p => formData.minPriceInvalid || !Number(formData.minPrice) || !formData.minPrice
-        || p.price >= Number(formData.minPrice))
-      .filter(p => formData.maxRatingInvalid || ((!formData.maxRating || p.rating.rate <= formData.maxRating)
-        && (formData.maxRating != 0 || p.rating.rate == 0)))
-      .filter(p => !formData.minRating || p.rating.rate >= formData.minRating)
-      .filter(p => !searchParam || p.title.toLowerCase()
-        .includes(searchParam.toLowerCase()))
+      .filter(product => this.isInStock(formData, product))
+      .filter(product => this.isWithinMaxPrice(formData, product))
+      .filter(product => this.isWithinMinPrice(formData, product))
+      .filter(product => this.isWithinMaxRating(formData, product))
+      .filter(product => this.isWithinMinRating(formData, product))
+      .filter(product => this.isMatchingSearchQuery(searchParam, product))
 
     if (formData.hasReviews) {
-      this.reviewsService.getAllReviews().subscribe((reviews: Review[]) => {
-        this.products = this.products.filter(p => reviews.find(review => review.productId == p.id));
-      }).add(() => this.setProductsAmount())
+      this.filterProductsByReviews()
+        .add(() => this.isProductsFetched = true);
     } else {
-      this.setProductsAmount();
+      this.isProductsFetched = true;
     }
   }
 
-  //todo delete
-  private filterProductsOnQueryParamsChange() {
-    this.activatedRoute.queryParams.subscribe((params) => {
-      console.log(this.form.getFormData())
-      this.getProducts(this.form.getFormData());
+  private filterProductsByReviews(): Subscription {
+    return this.reviewsService.getAllReviews().subscribe((reviews: Review[]) => {
+      this.products = this.products.filter(product => this.hasReviews(reviews, product));
     });
   }
 
-  //todo delete
-  private setProductsAmount(): void {
-    this.isProductsFetched = true;
-    this.amountOfProducts = this.products.length
+  private hasReviews(reviews: Review[], p: Product) {
+    return reviews.find(review => review.productId == p.id);
+  }
+
+  private isMatchingSearchQuery(searchParam: string, p: Product) {
+    return !searchParam || p.title.toLowerCase()
+      .includes(searchParam.toLowerCase());
+  }
+
+  private isWithinMinRating(formData: FiltersForm, p: Product) {
+    return formData.minRating == null || p.rating.rate >= formData.minRating;
+  }
+
+  private isWithinMaxRating(formData: FiltersForm, p: Product) {
+    return formData.maxRating == null || p.rating.rate <= formData.maxRating;
+  }
+
+  private isWithinMinPrice(formData: FiltersForm, p: Product) {
+    return formData.minPrice == null || p.price >= formData.minPrice;
+  }
+
+  private isWithinMaxPrice(formData: FiltersForm, p: Product) {
+    return formData.maxPrice == null || p.price <= formData.maxPrice;
+  }
+
+  private isInStock(formData: FiltersForm, product: Product) {
+    return !formData.inStock || product.stock > 0;
   }
 
   private applyFilterBadges(formData: FiltersForm): void {

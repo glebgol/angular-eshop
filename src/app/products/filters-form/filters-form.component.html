@@ -2,27 +2,23 @@
   <form [formGroup]="filtersForm" novalidate>
     <div>
       <label>Min Price</label>
-      <div *ngIf="minPrice?.hasError('min')" style="color: red; font-size: 15px;">Price should be > 0</div>
-      <div *ngIf="minPrice?.hasError('notNumber')" style="color: red">Not a number</div>
-      <input type="text" name="minPrice" formControlName="minPrice">
+      <div *ngIf="minPrice?.hasError('min')" style="color: red; font-size: 15px;">Price should be >= 0</div>
+      <input type="number" name="minPrice" formControlName="minPrice">
     </div>
     <div>
       <label>Max Price</label>
-      <div *ngIf="maxPrice?.hasError('min')" style="color: red; font-size: 15px;">Price should be > 0</div>
-      <div *ngIf="maxPrice?.hasError('notNumber')" style="color: red">Not a number</div>
-      <input type="text" name="maxPrice" formControlName="maxPrice"/>
+      <div *ngIf="maxPrice?.hasError('min')" style="color: red; font-size: 15px;">Price should be >= 0</div>
+      <input type="number" name="maxPrice" formControlName="maxPrice"/>
     </div>
     <div>
       <label>Min Rating</label>
-      <div *ngIf="minRating?.hasError('min')" style="color: red; font-size: 15px;">Price should be > 0</div>
-      <div *ngIf="minRating?.hasError('notNumber')" style="color: red">Not a number</div>
-      <input type="text" name="minRating" formControlName="minRating"/>
+      <div *ngIf="minRating?.hasError('min')" style="color: red; font-size: 15px;">Price should be >= 0</div>
+      <input type="number" name="minRating" formControlName="minRating"/>
     </div>
     <div>
       <label>Max Rating</label>
-      <div *ngIf="maxRating?.hasError('min')" style="color: red; font-size: 15px;">Price should be > 0</div>
-      <div *ngIf="maxRating?.hasError('notNumber')" style="color: red">Not a number</div>
-      <input type="text" name="maxRating" formControlName="maxRating"/>
+      <div *ngIf="maxRating?.hasError('min')" style="color: red; font-size: 15px;">Price should be >= 0</div>
+      <input type="number" name="maxRating" formControlName="maxRating"/>
     </div>
     <div>
       <label>In stock</label>

@@ -1,44 +1,42 @@
-<form *ngIf="product" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
-  <label for="image">Image:</label>
-  <input type="text" id="image" name="image" [(ngModel)]="product.image" required>
-
-  <div
-    *ngIf="title.invalid && (title.dirty || title.touched)"
-    class="alert"
-  >
-    <div *ngIf="title.errors?.['required']">Name is required.</div>
-    <div *ngIf="title.errors?.['minlength']">
-      Name must be at least 4 characters long.
+<div class="edit-form">
+  <form *ngIf="product" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+    <h2 *ngIf="isSubmitted" style="color: green">Successfully changed!</h2>
+    <label for="image">Image:</label>
+    <div *ngIf="image.invalid" class="alert">
+      Image is required
     </div>
-    <div *ngIf="title.errors?.['forbiddenName']">
-      Name cannot be Bob.
+    <input type="text" id="image" name="image" [(ngModel)]="product.image" #image="ngModel" required>
+
+    <label for="title">Title:</label>
+    <div *ngIf="title.invalid" class="alert">
+      <div style="color: red; font-size: 15px;" *ngIf="title.errors?.['required']">Title is required</div>
     </div>
+    <input  type="text" id="title" name="title" [(ngModel)]="product.title" #title="ngModel" required>
+
+    <label for="price">Price:</label>
+    <div *ngIf="price.invalid" class="alert">
+      <div style="color: red; font-size: 15px;" *ngIf="price.errors?.['required']">Price is required.</div>
+      <div style="color: red; font-size: 15px;" *ngIf="price.errors?.['min']">Price should be >= 0.</div>
+    </div>
+    <input [min]="0" type="number" id="price" name="price" [(ngModel)]="product.price" #price="ngModel" required>
+
+    <label for="stock">Number in stock:</label>
+    <div *ngIf="stock.invalid" class="alert">
+      <div style="color: red; font-size: 15px;" *ngIf="stock.errors?.['required']">Stock is required.</div>
+      <div style="color: red; font-size: 15px;" *ngIf="stock.errors?.['pattern']">Stock should be an integer.</div>
+      <div style="color: red; font-size: 15px;" *ngIf="stock.errors?.['min']">Stock should be >= 0.</div>
+    </div>
+    <input [min]="0" pattern="-?\d+" type="number" id="stock" name="stock" [(ngModel)]="product.stock" #stock="ngModel" required>
+
+    <label for="description">Description:</label>
+    <div *ngIf="description.invalid" class="alert">
+      <div style="color: red; font-size: 15px;" *ngIf="description.errors?.['required']">Description is required.</div>
+    </div>
+    <textarea id="description" name="description" [(ngModel)]="product.description" #description="ngModel" required></textarea>
+
+    <button [disabled]="!myForm.form.valid" type="submit">Submit</button>
+  </form>
+  <div>
+    <img [src]="product.image" height="400px" [alt]="product.title">
   </div>
-
-
-
-  <label for="title">Title:</label>
-  <input  type="text" id="title" name="title" [(ngModel)]="product.title" #title="ngModel" required>
-
-  <label for="price">Price:</label>
-  <div
-    *ngIf="price.invalid && (price.dirty || price.touched)"
-    class="alert"
-  >
-    <div *ngIf="price.errors?.['required']">Price is required.</div>
-  </div>
-  <div *ngIf="price.value && price.errors?.['priceInvalid']">
-    {{price.errors?.['priceInvalid']}}
-  </div>
-  <input appPriceInput type="number" id="price" name="price" [(ngModel)]="product.price" #price="ngModel" required>
-
-  <label for="stock">Number in stock:</label>
-  <input [min]="0" type="number" id="stock" name="stock" [(ngModel)]="product.stock" required>
-
-  <label for="description">Description:</label>
-  <input type="text" id="description" name="description" [value]="product.description" required>
-
-  <button [disabled]="!myForm.form.valid" type="submit">Submit</button>
-
-  <img [src]="product.image" height="400px" [alt]="product.title">
-</form>
+</div>

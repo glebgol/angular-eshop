@@ -1,23 +1,11 @@
 {
   "products": [
     {
-      "id": "2",
-      "title": "Moresque Gold Collection Sole Eau de Parfum, 50ml",
-      "price": "287",
-      "description": "The name and identity of the brand are inspired by the Moorish civilization and architecture. Moresque perfume offers a collection of unique and modern perfumes that are reminiscent of the scent of the Orient in combination with Italian delicacy. The perfumes are all true sensations, which give you a feeling of luxury. Moresque perfumes are Haute Parfumerie Products. These perfumes reveal luxury, style and distinction.",
-      "stock": 45,
-      "image": "https://www.laromat.ru/pics/moresque_sole_unisex.jpg",
-      "rating": {
-        "rate": 4.1,
-        "count": 259
-      }
-    },
-    {
       "id": "3",
       "title": "Vince Camuto Eterno Eau de Toilette, 100ml",
       "price": 286,
       "description": "Vince Camuto is a new fragrance brand. The collection includes women's fragrances as Amore, Fiori, Vince Camuto and Vince Camuto Femme. Male fragrances include Vince Camuto for Men and Vince Camuto Homme. These fragrances are available in Eau de Toilette perfumes, lotions and gift sets which include items such as stick deodorant for men and rollerball perfume sticks for women. Vince Camuto has 16 fragrances in the the fragrance market.",
-      "stock": 48,
+      "stock": 1,
       "image": "https://avatars.mds.yandex.net/get-mpic/4334326/img_id7152189713356920281.jpeg/orig",
       "rating": {
         "rate": 3.7,
@@ -117,12 +105,6 @@
       "price": 286
     },
     {
-      "id": "2",
-      "title": "Moresque Gold Collection Sole Eau de Parfum, 50ml",
-      "count": 4,
-      "price": "287"
-    },
-    {
       "id": "4",
       "title": "Antonio Visconti Silver Wood Eau de Parfum, 100ml",
       "count": 1,
@@ -133,6 +115,18 @@
       "title": "Ajmal Silver Shade Eau de Parfum, 100ml",
       "count": 20,
       "price": 20.9
+    },
+    {
+      "id": "2",
+      "title": "Moresque Gold Collection Sole Eau de Parfum, 50ml",
+      "count": 1,
+      "price": "287"
+    },
+    {
+      "id": "6",
+      "title": "Parfums de Marly Herod Eau de Parfum, 125ml",
+      "count": 4,
+      "price": 198
     }
   ],
   "users": [

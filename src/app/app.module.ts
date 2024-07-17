@@ -17,7 +17,6 @@ import { CartComponent } from './cart/cart.component';
 import { CartEntryComponent } from './cart-entry/cart-entry.component';
 import { EditProductComponent } from './products/edit-product/edit-product.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { PriceInputDirective } from './products/price-input.directive';
 import { ProductsPageComponent } from './products/products-page/products-page.component';
 import { FiltersFormComponent } from './products/filters-form/filters-form.component';
 import { DeleteFilterBadgeComponent } from './products/delete-filter-badge/delete-filter-badge.component';
@@ -40,7 +39,6 @@ import { SearchInputComponent } from './search-input/search-input.component';
     CartComponent,
     CartEntryComponent,
     EditProductComponent,
-    PriceInputDirective,
     FiltersFormComponent,
     DeleteFilterBadgeComponent,
     SearchInputComponent,
