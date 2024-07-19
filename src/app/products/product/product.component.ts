@@ -17,7 +17,6 @@ export class ProductComponent {
   }
 
   updateProductQuantity(quantity: number) {
-    console.log(quantity, this.product.id)
     this.cartService.updateCart(this.product, quantity);
   }
 

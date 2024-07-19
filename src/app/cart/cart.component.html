@@ -1,19 +1,10 @@
-<table>
+<div style="position: relative; min-height: 100px;">
+  <table>
+    <tr>
+      <th *ngFor="let c of columns">{{c}}</th>
+    </tr>
+    <tr @floatingOut *ngFor="let cartEntry of cartEntries" appCartEntry [cartEntry]="cartEntry" (deleted)="removeCartEntry($event)">
+    </tr>
+  </table>
+</div>
 
-  <tr>
-    <th>Product ID</th>
-    <th>Product Name</th>
-    <th>Count</th>
-    <th>Price</th>
-    <th>Total Price</th>
-    <th></th>
-  </tr>
-  <tbody>
-  <app-cart-entry *ngFor="let cartEntry of cartEntries"
-                  [cartEntry]="cartEntry"
-                  (removed)="removeCartEntry($event)">
-  </app-cart-entry>
-  </tbody>
-
-
-</table>
