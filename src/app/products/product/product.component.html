@@ -13,7 +13,7 @@
     <button class="button" routerLink="../product/edit/{{product.id}}">Edit</button>
   </div>
   <div class="product-info">
-    <p>{{product.rating.rate}}</p>
-    <p>{{product.price}}</p>
+    <p>{{product.rating.rate}}<fa-icon class="rating_star" [icon]="star"></fa-icon></p>
+    <p>{{product.price}} <fa-icon [icon]="dollar"></fa-icon></p>
   </div>
 </div>

@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CartProductEntry} from "../CartProductEntry";
+import {faSquareXmark} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   template: `
@@ -9,7 +10,9 @@ import {CartProductEntry} from "../CartProductEntry";
     <td>{{cartEntry.price}}</td>
     <td>{{cartEntry.price * cartEntry.count}}</td>
     <td>
-      <button (click)="removeCartEntry(cartEntry.id)">Delete</button>
+      <button (click)="removeCartEntry(cartEntry.id)">
+        <fa-icon [icon]="removeIcon"></fa-icon>
+      </button>
     </td>
   `,
   selector: '[appCartEntry]'
@@ -17,6 +20,7 @@ import {CartProductEntry} from "../CartProductEntry";
 export class CartEntryComponent {
   @Input() cartEntry!: CartProductEntry;
   @Output() deleted = new EventEmitter<string>();
+  removeIcon = faSquareXmark;
 
   removeCartEntry(id: string) {
     this.deleted.emit(id);

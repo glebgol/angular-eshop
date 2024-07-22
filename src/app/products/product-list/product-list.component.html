@@ -1,3 +1,6 @@
 <div class="product__list">
   <app-product *ngFor="let product of products" [product]="product" (deleted)="onProductDelete($event)"></app-product>
+  <div *ngIf="products.length == 0">
+    <p>No products found</p>
+  </div>
 </div>

@@ -1,22 +1,25 @@
 <div class="wrapper1">
-  <div class="product__details">
-    <div class="image">
-      <img class="img" src="{{product.image}}" height="200" alt="">
+  <div *ngIf="isLoading">Loading...</div>
+  <div *ngIf="!isFound && !isLoading">Product Not Found</div>
+  <div *ngIf="!isLoading && isFound">
+    <div class="product__details">
+      <div class="image">
+        <img class="img" src="{{product.image}}" height="200" alt="">
+      </div>
+      <div>
+        <p>{{product.title}}</p>
+        <p>Rate {{product.rating.rate}}<fa-icon class="rating_star" [icon]="star"></fa-icon> ({{product.rating.count}} reviews)</p>
+        <app-cart-counter [count]="count"
+                          [stock]="product.stock"
+                          (clicked)="addToCartAndSetCartProductCount()"
+                          (changedCount)="updateProductQuantity($event)">
+        </app-cart-counter>
+        <p>Price {{product.price}} <fa-icon [icon]="dollar"></fa-icon></p>
+        <p>{{product.description}}</p>
+        <p [appStockAvailabilityStyle]="product.stock"></p>
+      </div>
     </div>
-    <div>
-      <p>{{product.title}}</p>
-      <p>Rate {{product.rating.rate}} ({{product.rating.count}} reviews)</p>
-      <app-cart-counter [count]="count"
-                        [stock]="product.stock"
-                        (clicked)="addToCartAndSetCartProductCount()"
-                        (changedCount)="updateProductQuantity($event)">
-      </app-cart-counter>
-      <p>Price {{product.price}}</p>
-      <p>{{product.description}}</p>
-      <p [appStockAvailabilityStyle]="product.stock">hiii</p>
-
-    </div>
+    <hr/>
+    <app-reviews [productId]="product.id"></app-reviews>
   </div>
-  <hr/>
-  <app-reviews [productId]="product.id"></app-reviews>
 </div>

@@ -1,4 +1,4 @@
 <form>
   <input id="search" name="search" #search [value]="getSearchValue()">
-  <button (click)="doSearch(search.value)">Search</button>
+  <button (click)="doSearch(search.value)"><fa-icon [icon]='searchIcon'></fa-icon></button>
 </form>

@@ -1,5 +1,5 @@
 <div class="review">
-  <div>{{review.name}}</div>
-  <div>{{review.rate}} rate</div>
+  <div><fa-icon [icon]="avatar"></fa-icon>{{review.name}}</div>
+  <div>{{review.rate}}<fa-icon class="rating_star" [icon]="faStar"></fa-icon> rate</div>
   <div>{{review.text}}</div>
 </div>

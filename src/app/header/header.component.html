@@ -1,5 +1,16 @@
 <div class="header">
-  <a href="products">Products</a>
-  <a routerLink="cart">cart</a>
-  <app-search-input></app-search-input>
+  <a href="products">Shop</a>
+  <a routerLink="cart">
+    <fa-icon [icon]="faCartShopping"></fa-icon>
+  </a>
+
+  <app-search-input/>
+
+  <a *ngIf="!user; else LogOut" routerLink="auth">Authentication</a>
+  <ng-template #LogOut>
+    <p>{{user}}</p>
+    <button *ngIf="!!user" (click)="logOut()">
+      <fa-icon [icon]="faLogout"></fa-icon>
+    </button>
+  </ng-template>
 </div>

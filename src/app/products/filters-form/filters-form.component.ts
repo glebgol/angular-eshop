@@ -8,6 +8,7 @@ import {
 import {ProductService} from "../product.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FiltersForm} from "../FiltersForm";
+import {CustomValidators} from "../CustomValidators";
 
 @Component({
   selector: 'app-filters-form',
@@ -40,11 +41,6 @@ export class FiltersFormComponent {
     })
   }
 
-  //todo refactor
-  getNumberParamFromForm(valueChanges: any, name: string) {
-    return this.filtersForm.get(name)?.invalid ? null : (Number(valueChanges[name]) >= 0 ? (valueChanges[name] === '' ? null: valueChanges[name]) : null);
-  }
-
   notifyFormDataChanged() {
     this.formDataChanged.emit(this.getFormData());
   }
@@ -75,6 +71,16 @@ export class FiltersFormComponent {
     }
 
     return Number(value);
+  }
+
+  getNumberParamFromForm(valueChanges: any, name: string) {
+    if (this.filtersForm.get(name)?.invalid) {
+      return null;
+    } else if (Number(valueChanges[name]) >= 0) {
+      return valueChanges[name] === '' ? null : valueChanges[name]
+    } else {
+      return null;
+    }
   }
 
   isFormEmpty(): boolean {

@@ -22,6 +22,10 @@ import { DeleteFilterBadgeComponent } from './products/delete-filter-badge/delet
 import { SearchInputComponent } from './search-input/search-input.component';
 import {BrowserAnimationsModule, provideAnimations} from "@angular/platform-browser/animations";
 import { CartEntryComponent } from './cart/cart-entry.component';
+import { AuthPageComponent } from './auth-page/auth-page.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { StockValidatorDirective } from './stock-validator.directive';
 
 
 @NgModule({
@@ -43,6 +47,9 @@ import { CartEntryComponent } from './cart/cart-entry.component';
     DeleteFilterBadgeComponent,
     SearchInputComponent,
     CartEntryComponent,
+    AuthPageComponent,
+    PageNotFoundComponent,
+    StockValidatorDirective,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +57,7 @@ import { CartEntryComponent } from './cart/cart-entry.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    FontAwesomeModule,
   ],
   providers: [
     importProvidersFrom(HttpClientModule), provideAnimations(),

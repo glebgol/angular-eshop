@@ -11,11 +11,15 @@ export class ReviewsComponent {
   @Input({required: true}) productId!: string;
 
   reviews!: Review[]
+  isLoading: boolean = true;
 
   constructor(private reviewsService: ReviewsService) {
   }
 
   ngOnInit() {
-    this.reviewsService.getReviews(this.productId).subscribe(reviews => this.reviews = reviews);
+    this.reviewsService.getReviews(this.productId).subscribe(reviews => {
+      this.reviews = reviews;
+      this.isLoading = false;
+    });
   }
 }

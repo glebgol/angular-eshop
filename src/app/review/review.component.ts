@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Review} from "../review";
+import {faStar, faUserTie} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-review',
@@ -8,6 +9,6 @@ import {Review} from "../review";
 })
 export class ReviewComponent {
   @Input({required: true}) review!: Review;
-
-
+  faStar = faStar;
+  avatar = faUserTie;
 }

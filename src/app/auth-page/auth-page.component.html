@@ -1,0 +1,29 @@
+<div>
+  <h2 *ngIf="isSignUp; else SignIn">Register</h2>
+  <ng-template #SignIn><h2>Login</h2></ng-template>
+  <h2 *ngIf="isUserNotExists">User with that email and password doesn't exist</h2>
+  <h2 *ngIf="isUserWithEmailExists">User with that email exists</h2>
+
+  <form #authForm="ngForm" (ngSubmit)="submitForm()">
+    <div *ngIf="email.invalid && (email.touched || email.dirty)" class="alert">
+      <div style="color: red; font-size: 15px;" *ngIf="email?.errors?.['required']">Email is required</div>
+      <div style="color: red; font-size: 15px;" *ngIf="email?.errors?.['email']">Invalid email</div>
+    </div>
+    <input type="email" id="email" name="email" [email]="true" [(ngModel)]="user.email" #email="ngModel" required
+           [class.error]="(email.touched || email.dirty) && email.invalid">
+    <div *ngIf="password?.invalid && (password.touched || password.dirty)" class="alert">
+      <div style="color: red; font-size: 15px;" *ngIf="password.touched && password?.errors?.['required']">Password is required</div>
+      <div style="color: red; font-size: 15px;" *ngIf="password.touched && password?.errors?.['minlength']">Min length 5</div>
+    </div>
+    <input type="text" [minlength]="5" id="password" name="password" [(ngModel)]="user.password" #password="ngModel" required
+           [class.error]="(password.touched || password.dirty) && password.invalid">
+    <button [disabled]="authForm.invalid">Submit</button>
+  </form>
+
+  <div *ngIf="isSignUp; else SignInSwitch">
+    Already have an account? <button (click)="switchForm()">Login</button>
+  </div>
+  <ng-template #SignInSwitch>
+    Don't have an account? <button (click)="switchForm()">Register</button>
+  </ng-template>
+</div>

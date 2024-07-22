@@ -1,11 +1,35 @@
 {
   "products": [
     {
+      "id": "1",
+      "title": "Van Cleef & Arpels Extraordinaire Precious Oud Eau de Parfum, 75ml",
+      "price": 93.5,
+      "description": "The scents of Van Cleef & Arpels are magical Collection Extraordinaire, unique and breathe an unmistakable personality. From all the use of precious old and present the mix fascinating, spicy, woody and floral notes. Adventure and joy of life, a steady state in life and a taste for a touch of luxury are side effects associated with the scents of the Van Cleef & Arpels Collection Extraordinaire and distinguish with a lot of individuality precise mix of minimalism and luxury expresses that the simplicity of things is true luxury often and there is no need to feel wealth happiness and love, joy, personality and sensuality and passion. Van Cleef & Arpels was found in 1896 and has over more than 55 fragrances.",
+      "image": "https://i2.stat01.com/2/7970/179695882/075a3e/g84yx-huirajuvjcjj-l9uaflfpzxlpo0fgptkizifehlhxcfkwfrvop6anyy1fqjkslzj8ce8abffgafm8340o-jpg.jpg",
+      "stock": 50,
+      "rating": {
+        "rate": 0,
+        "count": 0
+      }
+    },
+    {
+      "id": "2",
+      "title": "Moresque Gold Collection Sole Eau de Parfum, 50ml",
+      "price": "287",
+      "description": "The name and identity of the brand are inspired by the Moorish civilization and architecture. Moresque perfume offers a collection of unique and modern perfumes that are reminiscent of the scent of the Orient in combination with Italian delicacy. The perfumes are all true sensations, which give you a feeling of luxury. Moresque perfumes are Haute Parfumerie Products. These perfumes reveal luxury, style and distinction.",
+      "stock": 45,
+      "image": "https://www.laromat.ru/pics/moresque_sole_unisex.jpg",
+      "rating": {
+        "rate": 4.1,
+        "count": 259
+      }
+    },
+    {
       "id": "3",
       "title": "Vince Camuto Eterno Eau de Toilette, 100ml",
       "price": 286,
       "description": "Vince Camuto is a new fragrance brand. The collection includes women's fragrances as Amore, Fiori, Vince Camuto and Vince Camuto Femme. Male fragrances include Vince Camuto for Men and Vince Camuto Homme. These fragrances are available in Eau de Toilette perfumes, lotions and gift sets which include items such as stick deodorant for men and rollerball perfume sticks for women. Vince Camuto has 16 fragrances in the the fragrance market.",
-      "stock": 1,
+      "stock": 48,
       "image": "https://avatars.mds.yandex.net/get-mpic/4334326/img_id7152189713356920281.jpeg/orig",
       "rating": {
         "rate": 3.7,
@@ -97,7 +121,32 @@
       }
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "id": "3",
+      "title": "Vince Camuto Eterno Eau de Toilette, 100ml",
+      "count": 1,
+      "price": 286
+    },
+    {
+      "id": "4",
+      "title": "Antonio Visconti Silver Wood Eau de Parfum, 100ml",
+      "count": 45,
+      "price": 175
+    },
+    {
+      "id": "1",
+      "title": "Van Cleef & Arpels Extraordinaire Precious Oud Eau de Parfum, 75ml",
+      "count": 44,
+      "price": 93.5
+    },
+    {
+      "id": "2",
+      "title": "Moresque Gold Collection Sole Eau de Parfum, 50ml",
+      "count": 3,
+      "price": "287"
+    }
+  ],
   "users": [
     {
       "email": "test@gmail.com",
@@ -105,29 +154,25 @@
       "id": "1"
     },
     {
-      "email": "test@gmail.com",
+      "email": "test2@gmail.com",
       "password": "Test_12",
       "id": "2"
+    },
+    {
+      "id": "32dd",
+      "email": "test23@gmail.com",
+      "password": "Test_231"
+    },
+    {
+      "id": "d0a9",
+      "email": "test22@gmail.com",
+      "password": "Test_23"
     }
   ],
   "reviews": [
     {
       "id": "1",
       "productId": 3,
-      "name": "John S.",
-      "rate": 4,
-      "text": "Good product!"
-    },
-    {
-      "id": "5",
-      "productId": 2,
-      "name": "John S.",
-      "rate": 4,
-      "text": "Good product!"
-    },
-    {
-      "id": "6",
-      "productId": 2,
       "name": "John S.",
       "rate": 4,
       "text": "Good product!"

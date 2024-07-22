@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Product} from "../product";
 import {CartService} from "../../cart.service";
+import {faStar, faDollar} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-product',
@@ -12,8 +13,10 @@ export class ProductComponent {
   @Output() deleted = new EventEmitter<string>();
 
   count: number = 1;
+  star = faStar;
+  dollar = faDollar;
 
-  constructor(public cartService: CartService) {
+  constructor(protected cartService: CartService) {
   }
 
   updateProductQuantity(quantity: number) {

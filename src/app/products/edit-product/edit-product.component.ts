@@ -14,6 +14,9 @@ export class EditProductComponent {
   id: string = '1';
   product!: Product;
   isSubmitted: boolean = false;
+  isLoading: boolean = true;
+  isFound: boolean = false;
+
   constructor(activateRoute: ActivatedRoute, private productService: ProductService) {
     this.id = activateRoute.snapshot.params["id"];
     this.productService.getProductById(this.id).subscribe((product => {
@@ -24,7 +27,12 @@ export class EditProductComponent {
   ngOnInit() {
     this.productService.getProductById(this.id).subscribe((product => {
       this.product = product;
-    }));
+      this.isLoading = false;
+      this.isFound = true;
+    }), () => {
+      this.isFound = false;
+      this.isLoading = false;
+    });
   }
 
   onSubmit(form: NgForm) {

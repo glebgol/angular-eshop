@@ -41,17 +41,6 @@ export class ProductsPageComponent {
     });
   }
 
-  deleteFormParam(id: string) {
-    this.router.navigate([], {
-      queryParams: {
-        [id]: null
-      },
-      queryParamsHandling: 'merge',
-    });
-
-    this.form.filtersForm.get(id)?.reset();
-  }
-
   private filterProducts(products: Product[], formData: FiltersForm): void {
     this.isProductsFetched = false;
 
@@ -152,6 +141,17 @@ export class ProductsPageComponent {
     } else {
       this.filterBadges.delete('minRating')
     }
+  }
+
+  deleteFormParam(id: string) {
+    this.router.navigate([], {
+      queryParams: {
+        [id]: null
+      },
+      queryParamsHandling: 'merge',
+    });
+
+    this.form.filtersForm.get(id)?.reset();
   }
 
   @HostListener('window:popstate', ['$event'])

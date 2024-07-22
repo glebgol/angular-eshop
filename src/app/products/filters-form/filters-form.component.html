@@ -12,12 +12,12 @@
     </div>
     <div>
       <label>Min Rating</label>
-      <div *ngIf="minRating?.hasError('min')" style="color: red; font-size: 15px;">Price should be >= 0</div>
+      <div *ngIf="minRating?.hasError('min')" style="color: red; font-size: 15px;">Rating should be >= 0</div>
       <input type="number" name="minRating" formControlName="minRating"/>
     </div>
     <div>
       <label>Max Rating</label>
-      <div *ngIf="maxRating?.hasError('min')" style="color: red; font-size: 15px;">Price should be >= 0</div>
+      <div *ngIf="maxRating?.hasError('min')" style="color: red; font-size: 15px;">Rating should be >= 0</div>
       <input type="number" name="maxRating" formControlName="maxRating"/>
     </div>
     <div>

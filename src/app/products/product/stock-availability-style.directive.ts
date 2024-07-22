@@ -14,7 +14,7 @@ export class StockAvailabilityStyleDirective {
       element.style.color = 'green';
       element.innerHTML = 'In stock';
     } else if (this.appStockAvailabilityStyle > 0) {
-      element.style.color = 'yellow';
+      element.style.color = '#bb7b00';
       element.innerHTML = 'Almost sold out';
     } else {
       element.style.color = 'gray';
