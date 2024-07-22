@@ -1,20 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ProductDetailsComponent} from "./products/product-details/product-details.component";
-import {CartComponent} from "./cart/cart.component";
-import {EditProductComponent} from "./products/edit-product/edit-product.component";
-import {ProductsPageComponent} from "./products/products-page/products-page.component";
-import {AuthPageComponent} from "./auth-page/auth-page.component";
-import {AuthGuard} from "./auth.guard";
-import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {ProductDetailsComponent} from "./products/pages/product-details/product-details.component";
+import {CartComponent} from "./cart/pages/cart/cart.component";
+import {EditProductComponent} from "./products/pages/edit-product/edit-product.component";
+import {ProductsPageComponent} from "./products/pages/products-page/products-page.component";
+import {AuthPageComponent} from "./auth/pages/auth-page/auth-page.component";
+import {AuthGuard} from "./shared/guards/auth.guard";
+import {PageNotFoundComponent} from "./shared/components/page-not-found/page-not-found.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'products', pathMatch: 'full' },
-  { path: 'products', component: ProductsPageComponent, title: 'Shop' },
-  { path: 'products/:id', component: ProductDetailsComponent, title: 'Product Details' },
-  { path: 'product/edit/:id',  component: EditProductComponent, canActivate: [AuthGuard], title: 'Edit product' },
-  { path: 'cart', component: CartComponent, title: 'Cart' },
-  { path: 'auth',  component: AuthPageComponent, title: 'Auth' },
+  { path: '', loadChildren: () => import('./products/products.module').then(m => m.ProductsModule) },
+  { path: 'cart', loadChildren: () => import('./cart/cart.module').then(m => m.CartModule) },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   { path: '**', pathMatch: 'full', component: PageNotFoundComponent, title: 'Page Not Found' },
 ];
 

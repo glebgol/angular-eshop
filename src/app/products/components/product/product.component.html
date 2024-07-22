@@ -1,0 +1,19 @@
+<div routerLink="../products/{{product.id}}" class="product__item">
+  <img src="{{product.image}}" alt="">
+  <p class="product-title">{{product.title}}</p>
+  <div class="buttons_container">
+    <app-cart-counter [count]="count"
+                      [stock]="product.stock"
+                      (click)="$event.stopPropagation()"
+                      (clicked)="addToCartAndSetCartProductCount()"
+                      (changedCount)="updateProductQuantity($event)"
+                      class="button">
+    </app-cart-counter>
+    <button class="button" (click)="delete(); $event.stopPropagation()">Delete</button>
+    <button class="button" (click)="$event.stopPropagation()" routerLink="../product/edit/{{product.id}}">Edit</button>
+  </div>
+  <div class="product-info">
+    <p>{{product.rating.rate}}<fa-icon class="rating_star" [icon]="star"></fa-icon></p>
+    <p>{{product.price}} <fa-icon [icon]="dollar"></fa-icon></p>
+  </div>
+</div>

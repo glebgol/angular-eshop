@@ -1,18 +1,6 @@
 {
   "products": [
     {
-      "id": "1",
-      "title": "Van Cleef & Arpels Extraordinaire Precious Oud Eau de Parfum, 75ml",
-      "price": 93.5,
-      "description": "The scents of Van Cleef & Arpels are magical Collection Extraordinaire, unique and breathe an unmistakable personality. From all the use of precious old and present the mix fascinating, spicy, woody and floral notes. Adventure and joy of life, a steady state in life and a taste for a touch of luxury are side effects associated with the scents of the Van Cleef & Arpels Collection Extraordinaire and distinguish with a lot of individuality precise mix of minimalism and luxury expresses that the simplicity of things is true luxury often and there is no need to feel wealth happiness and love, joy, personality and sensuality and passion. Van Cleef & Arpels was found in 1896 and has over more than 55 fragrances.",
-      "image": "https://i2.stat01.com/2/7970/179695882/075a3e/g84yx-huirajuvjcjj-l9uaflfpzxlpo0fgptkizifehlhxcfkwfrvop6anyy1fqjkslzj8ce8abffgafm8340o-jpg.jpg",
-      "stock": 50,
-      "rating": {
-        "rate": 0,
-        "count": 0
-      }
-    },
-    {
       "id": "2",
       "title": "Moresque Gold Collection Sole Eau de Parfum, 50ml",
       "price": "287",
@@ -123,28 +111,16 @@
   ],
   "cart": [
     {
-      "id": "3",
-      "title": "Vince Camuto Eterno Eau de Toilette, 100ml",
-      "count": 1,
-      "price": 286
+      "id": "2",
+      "title": "Moresque Gold Collection Sole Eau de Parfum, 50ml",
+      "count": 10,
+      "price": "287"
     },
     {
       "id": "4",
       "title": "Antonio Visconti Silver Wood Eau de Parfum, 100ml",
-      "count": 45,
+      "count": 22,
       "price": 175
-    },
-    {
-      "id": "1",
-      "title": "Van Cleef & Arpels Extraordinaire Precious Oud Eau de Parfum, 75ml",
-      "count": 44,
-      "price": 93.5
-    },
-    {
-      "id": "2",
-      "title": "Moresque Gold Collection Sole Eau de Parfum, 50ml",
-      "count": 3,
-      "price": "287"
     }
   ],
   "users": [
