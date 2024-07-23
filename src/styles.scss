@@ -1,49 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
 .button {
   width: 100px;
   height: 50px;
+  background: #cceae2;
+  border: none;
+  cursor: pointer;
 }
-@import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
-//
+
+.button:hover {
+  background: #80e8cb;
+}
+
+.button:disabled:hover {
+  cursor: auto;
+  background: #cceae2;
+}
+
 body {
   font-family: 'Oswald', sans-serif;
   font-weight: 400;
   margin:0;
   padding:0;
   min-height: 100vh;
-  background: aliceblue;
+  background: #ececec;
   display: flex;
   flex-direction: column;
-}
-
-.header {
-  position: sticky;
-  top: 0;
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  background: #48793c;
-  z-index: 1;
-  width: 100%;
-  min-height: 100px;
 }
 
 .rating_star {
   color: gold;
 }
 
-.inner {
-  position: relative;
-}
-
-.input {
-  margin: auto;
-}
-
 .error {
-  border: 1px solid red;
+  border: 2px solid red;
 }
 
 .error:focus {
-  outline-color: red;
+  outline: 1px solid red;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  font-size: 16px;
 }

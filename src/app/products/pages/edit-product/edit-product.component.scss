@@ -1,24 +1,67 @@
-input {
-  display: block;
-  width: 400px;
-}
-
-textarea {
-  display: block;
-  width: 400px;
-  resize: vertical; max-height: 300px; min-height: 100px;
-}
-
-.form {
-  display: flex;
-  flex-direction: row;
-}
-
-* {
-  margin: 5px;
-}
-
 .edit-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.error {
+  border-color: red;
+}
+
+.success {
+  color: green;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+  max-height: 200px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.image-container {
+  padding: 20px;
+  width: 500px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  margin: auto;
+}
+
+.container {
   display: flex;
   flex-direction: row;
+  width: 80%;
+  margin: auto;
 }

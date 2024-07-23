@@ -1,33 +1,33 @@
-<div class="form2">
+<div class="form">
   <form [formGroup]="filtersForm" novalidate>
-    <div>
+    <div class="filter">
       <label>Min Price</label>
-      <div *ngIf="minPrice?.hasError('min')" style="color: red; font-size: 15px;">Price should be >= 0</div>
-      <input type="number" name="minPrice" formControlName="minPrice">
+      <div *ngIf="minPrice?.hasError('min')" class="error-message">Price should be >= 0</div>
+      <input [class.error]="minPrice?.invalid" type="number" name="minPrice" formControlName="minPrice">
     </div>
-    <div>
+    <div class="filter">
       <label>Max Price</label>
-      <div *ngIf="maxPrice?.hasError('min')" style="color: red; font-size: 15px;">Price should be >= 0</div>
-      <input type="number" name="maxPrice" formControlName="maxPrice"/>
+      <div *ngIf="maxPrice?.hasError('min')" class="error-message">Price should be >= 0</div>
+      <input [class.error]="maxPrice?.invalid" type="number" name="maxPrice" formControlName="maxPrice"/>
     </div>
-    <div>
+    <div class="filter">
       <label>Min Rating</label>
-      <div *ngIf="minRating?.hasError('min')" style="color: red; font-size: 15px;">Rating should be >= 0</div>
-      <input type="number" name="minRating" formControlName="minRating"/>
+      <div *ngIf="minRating?.hasError('min')" class="error-message">Rating should be >= 0</div>
+      <input [class.error]="minRating?.invalid" type="number" name="minRating" formControlName="minRating"/>
     </div>
-    <div>
+    <div class="filter">
       <label>Max Rating</label>
-      <div *ngIf="maxRating?.hasError('min')" style="color: red; font-size: 15px;">Rating should be >= 0</div>
-      <input type="number" name="maxRating" formControlName="maxRating"/>
+      <div *ngIf="maxRating?.hasError('min')" class="error-message">Rating should be >= 0</div>
+      <input [class.error]="maxRating?.invalid" type="number" name="maxRating" formControlName="maxRating"/>
     </div>
-    <div>
+    <div class="checkbox-filter">
       <label>In stock</label>
       <input type="checkbox" name="inStock" formControlName="inStock"/>
     </div>
-    <div>
+    <div class="checkbox-filter">
       <label>Has reviews</label>
       <input type="checkbox" name="hasReviews" formControlName="hasReviews"/>
     </div>
   </form>
-  <button (click)="resetForm()" [hidden]="isFormEmpty()">Delete filters</button>
+  <button (click)="resetForm()" [hidden]="isFormEmpty()" class="reset-button">Delete filters</button>
 </div>

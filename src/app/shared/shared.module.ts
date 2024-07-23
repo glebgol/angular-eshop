@@ -6,7 +6,6 @@ import {UserService} from "./services/user.service";
 import {StockValidatorDirective} from "./directives/stock-validator.directive";
 import {StockAvailabilityStyleDirective} from "./directives/stock-availability-style.directive";
 import {HeaderComponent} from "./components/header/header.component";
-import {FooterComponent} from "./components/footer/footer.component";
 import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
 import {FaIconComponent, FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {SearchInputComponent} from "./components/search-input/search-input.component";
@@ -20,7 +19,6 @@ import {BackService} from "./services/back.service";
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent,
     StockValidatorDirective,
     StockAvailabilityStyleDirective,
     PageNotFoundComponent,
@@ -35,7 +33,6 @@ import {BackService} from "./services/back.service";
   ],
   exports: [
     HeaderComponent,
-    FooterComponent,
     StockValidatorDirective,
     StockAvailabilityStyleDirective,
     PageNotFoundComponent,

@@ -1,12 +1,10 @@
-<div class="wrapper">
-  <app-filters-form class="form"></app-filters-form>
-  <div class="main">
-    <div style="background: #a7e9c5; margin-bottom: 20px">
-      <p *ngIf="isProductsFetched">Products found: {{products.length}}</p>
-    </div>
-    <app-delete-filter-badge style="margin-bottom: 10px" (onBadgeDelete)="deleteFormParam($event)" [badges]="filterBadges"></app-delete-filter-badge>
-
+<div class="main">
+  <div class="sticky-form">
+    <app-filters-form class="form"></app-filters-form>
+  </div>
+  <div class="products">
+    <app-delete-filter-badge *ngIf="filterBadges.size > 0" (onBadgeDelete)="deleteFormParam($event)" [badges]="filterBadges"></app-delete-filter-badge>
+    <h1 *ngIf="!isProductsFetched">Loading..</h1>
     <app-product-list *ngIf="isProductsFetched" [products]="products"></app-product-list>
   </div>
-  <h1 *ngIf="!isProductsFetched">test</h1>
 </div>

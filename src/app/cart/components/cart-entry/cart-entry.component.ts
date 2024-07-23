@@ -4,17 +4,18 @@ import {faSquareXmark} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   template: `
-    <th>{{cartEntry.id}}</th>
-    <td>{{cartEntry.title}}</td>
-    <td>{{cartEntry.count}}</td>
-    <td>{{cartEntry.price}}</td>
-    <td>{{cartEntry.price * cartEntry.count}}</td>
-    <td>
-      <button (click)="removeCartEntry(cartEntry.id)">
-        <fa-icon [icon]="removeIcon"></fa-icon>
+    <th class="cart-table__cell--id">{{ cartEntry.id }}</th>
+    <td class="cart-table__cell--title">{{ cartEntry.title }}</td>
+    <td class="cart-table__cell--count">{{ cartEntry.count }}</td>
+    <td class="cart-table__cell--price">{{ cartEntry.price | currency }}</td>
+    <td class="cart-table__cell--total">{{ cartEntry.price * cartEntry.count | currency }}</td>
+    <td class="cart-table__cell--action">
+      <button class="cart-table__remove-btn" (click)="removeCartEntry(cartEntry.id)">
+        <fa-icon [icon]="removeIcon" class="cart-table__remove-icon"></fa-icon>
       </button>
     </td>
   `,
+  styleUrl: 'cart-entry.component.scss',
   selector: '[appCartEntry]'
 })
 export class CartEntryComponent {

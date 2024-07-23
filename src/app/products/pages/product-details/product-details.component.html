@@ -1,10 +1,10 @@
-<div class="wrapper1">
+<div class="product">
   <div *ngIf="isLoading">Loading...</div>
   <div *ngIf="!isFound && !isLoading">Product Not Found</div>
   <div *ngIf="!isLoading && isFound">
     <div class="product__details">
-      <div class="image">
-        <img class="img" src="{{product.image}}" height="200" alt="">
+      <div>
+        <img class="image" [src]="product.image" [alt]="product.title">
       </div>
       <div>
         <p>{{product.title}}</p>

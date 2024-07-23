@@ -1,5 +1,12 @@
 <div class="review">
-  <div><fa-icon [icon]="avatar"></fa-icon>{{review.name}}</div>
-  <div>{{review.rate}}<fa-icon class="rating_star" [icon]="faStar"></fa-icon> rate</div>
-  <div>{{review.text}}</div>
+  <div class="avatar">
+    <fa-icon [icon]="avatar"></fa-icon>
+  </div>
+  <div>
+    <div>
+      {{review.name}}
+    </div>
+    <div>{{review.rate}}<fa-icon class="rating_star" [icon]="faStar"></fa-icon> rate</div>
+    <div>{{review.text}}</div>
+  </div>
 </div>

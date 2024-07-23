@@ -2,18 +2,18 @@
   display: flex;
   flex-direction: row;
   gap: 15px;
-  margin-bottom: 5px;
+  margin: 20px;
 }
 
 .badge {
   display: block;
   height: 30px;
   border-radius: 25px;
-  border: 3px solid;
-  background: #48793c;
+  color: white;
+  background: #385170;
 }
 
 .badge:hover {
-  border: 3px #48793c solid;
-  text-decoration: line-through;
+  background: #304967;
+  text-decoration: line-through 2px #FF5733;
 }

@@ -5,10 +5,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-delete-filter-badge',
-  templateUrl: './delete-filter-badge.component.html',
-  styleUrl: './delete-filter-badge.component.scss'
+  templateUrl: './filter-badges.component.html',
+  styleUrl: './filter-badges.component.scss'
 })
-export class DeleteFilterBadgeComponent {
+export class FilterBadgesComponent {
   @Input() badges!: Map<string, string>;
   @Output() onBadgeDelete = new EventEmitter<string>();
 

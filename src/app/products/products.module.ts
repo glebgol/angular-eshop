@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
 import {ProductsPageComponent} from "./pages/products-page/products-page.component";
 import {ProductListComponent} from "./components/product-list/product-list.component";
 import {ProductComponent} from "./components/product/product.component";
@@ -9,7 +8,7 @@ import {ReviewComponent} from "./components/review/review.component";
 import {ReviewsComponent} from "./components/reviews/reviews.component";
 import {EditProductComponent} from "./pages/edit-product/edit-product.component";
 import {FiltersFormComponent} from "./components/filters-form/filters-form.component";
-import {DeleteFilterBadgeComponent} from "./components/delete-filter-badge/delete-filter-badge.component";
+import {FilterBadgesComponent} from "./components/filter-badges/filter-badges.component";
 import {SharedModule} from "../shared/shared.module";
 import {RouterModule, Routes} from "@angular/router";
 import {AuthGuard} from "../shared/guards/auth.guard";
@@ -33,7 +32,7 @@ const routes: Routes = [
     ReviewsComponent,
     EditProductComponent,
     FiltersFormComponent,
-    DeleteFilterBadgeComponent,
+    FilterBadgesComponent,
   ],
   imports: [
     ReactiveFormsModule,
