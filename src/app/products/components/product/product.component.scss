@@ -31,13 +31,18 @@
 }
 
 .product-info {
-  margin: 0px 20px;
+  margin: 0 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
 .product-title {
+  padding: 20px;
+  height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   text-align: center;
 }
 

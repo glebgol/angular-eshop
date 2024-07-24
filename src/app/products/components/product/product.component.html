@@ -1,6 +1,8 @@
 <div routerLink="../products/{{product.id}}" class="product__item">
   <img [src]="product.image" [alt]="product.title" (error)="product.image = 'default-product.png'" class="image">
-  <p class="product-title">{{product.title}}</p>
+  <div class="product-title">
+    {{product.title}}
+  </div>
   <div class="buttons_container">
     <app-cart-counter [count]="count"
                       [stock]="product.stock"

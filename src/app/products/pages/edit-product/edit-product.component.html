@@ -1,8 +1,8 @@
 <div class="container">
   <div *ngIf="!isFound && !isLoading"><h2>Product Not Found</h2></div>
-  <div class="edit-form">
-    <div *ngIf="isLoading">Loading...</div>
-    <div *ngIf="!isLoading && isFound">
+  <div *ngIf="isLoading">Loading...</div>
+  <div class="edit-form" *ngIf="!isLoading && isFound">
+    <div>
       <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
         <h2 *ngIf="isSubmitted" class="success">Successfully changed!</h2>
         <label for="image">Image:</label>

@@ -4,7 +4,7 @@
   <div *ngIf="!isLoading && isFound">
     <div class="product__details">
       <div>
-        <img class="image" [src]="product.image" [alt]="product.title">
+        <img [src]="product.image" [alt]="product.title" (error)="product.image = 'default-product.png'" class="image">
       </div>
       <div>
         <p>{{product.title}}</p>
