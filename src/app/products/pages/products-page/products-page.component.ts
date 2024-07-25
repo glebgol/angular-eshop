@@ -78,19 +78,19 @@ export class ProductsPageComponent {
   }
 
   private isWithinMinRating(formData: FiltersForm, p: Product) {
-    return formData.minRating == null || p.rating.rate >= formData.minRating;
+    return formData.minRatingInvalid || formData.minRating == null || p.rating.rate >= formData.minRating;
   }
 
   private isWithinMaxRating(formData: FiltersForm, p: Product) {
-    return formData.maxRating == null || p.rating.rate <= formData.maxRating;
+    return formData.maxRatingInvalid || formData.maxRating == null || p.rating.rate <= formData.maxRating;
   }
 
   private isWithinMinPrice(formData: FiltersForm, p: Product) {
-    return formData.minPrice == null || p.price >= formData.minPrice;
+    return formData.minPriceInvalid || formData.minPrice == null || p.price >= formData.minPrice;
   }
 
   private isWithinMaxPrice(formData: FiltersForm, p: Product) {
-    return formData.maxPrice == null || p.price <= formData.maxPrice;
+    return formData.maxPriceInvalid || formData.maxPrice == null || p.price <= formData.maxPrice;
   }
 
   private isInStock(formData: FiltersForm, product: Product) {

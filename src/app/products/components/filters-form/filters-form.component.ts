@@ -8,7 +8,6 @@ import {
 import {ProductService} from "../../../shared/services/product.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FiltersForm} from "../../filters-form";
-import {CustomValidators} from "../../../shared/validators/CustomValidators";
 
 @Component({
   selector: 'app-filters-form',
