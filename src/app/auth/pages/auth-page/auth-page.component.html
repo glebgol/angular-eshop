@@ -5,12 +5,15 @@
   <h2 *ngIf="isUserWithEmailExists" class="error-message">User with that email exists</h2>
 
   <form #authForm="ngForm" (ngSubmit)="submitForm()" class="sign-in-up-form">
+    <label for="email">Email</label>
     <div *ngIf="email.invalid && (email.touched || email.dirty)" class="error-message">
       <div *ngIf="email?.errors?.['required']">Email is required</div>
       <div *ngIf="email?.errors?.['email']">Invalid email</div>
     </div>
     <input type="email" id="email" name="email" [email]="true" [(ngModel)]="user.email" #email="ngModel" required
            [class.error]="(email.touched || email.dirty) && email.invalid">
+
+    <label for="password">Password</label>
     <div *ngIf="password?.invalid && (password.touched || password.dirty)" class="error-message">
       <div *ngIf="password.touched && password?.errors?.['required']">Password is required</div>
       <div *ngIf="password.touched && password?.errors?.['minlength']">Min length 5</div>
