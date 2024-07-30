@@ -1,26 +1,31 @@
-import { Component } from '@angular/core';
-import {ProductComponent} from "../../components/product/product.component";
+import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CartService} from "../../../shared/services/cart.service";
 import {ProductService} from "../../../shared/services/product.service";
+import {Product} from "../../../shared/models/product.model";
+import {faDollar, faStar} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.scss'
 })
-export class ProductDetailsComponent extends ProductComponent {
+export class ProductDetailsComponent {
   id: string = '1';
   isLoading: boolean = true;
   isFound: boolean = false;
+  product!: Product;
+  count!: number;
 
-  constructor(protected override cartService: CartService, private activateRoute: ActivatedRoute,
+  star = faStar;
+  dollar = faDollar;
+
+  constructor(private cartService: CartService, private activateRoute: ActivatedRoute,
               private productService: ProductService) {
-    super(cartService);
   }
 
   ngOnInit() {
-    this.id = this.activateRoute.snapshot.params["id"];
+    this.id = this.activateRoute.snapshot.params['id'];
 
     this.productService.getProductById(this.id).subscribe((product => {
       this.product = product;
@@ -29,5 +34,16 @@ export class ProductDetailsComponent extends ProductComponent {
     }), () => {
       this.isLoading = false;
     });
+
+    this.cartService.getCartProductEntry(this.id).subscribe(cartEntry => {
+      this.count = cartEntry.count;
+    }, () => {
+      this.count = 0;
+    });
+  }
+
+  updateProductCount(count: number) {
+    this.count = count;
+    this.cartService.updateCart(this.product, count);
   }
 }

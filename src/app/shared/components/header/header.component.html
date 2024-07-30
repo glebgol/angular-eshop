@@ -1,6 +1,6 @@
 <div class="header">
   <div class="links">
-    <a href="products">Shop</a>
+    <a routerLink="products">Shop</a>
     <a *ngIf="!user" routerLink="auth" class="link">Authentication</a>
     <a routerLink="cart">
       <fa-icon [icon]="faCartShopping"></fa-icon>
@@ -12,7 +12,7 @@
 
     <div *ngIf="user">
       <p style="display: inline">{{user}}</p>
-      <button *ngIf="!!user" (click)="logOut()" style="display: inline">
+      <button *ngIf="!!user" (click)="logOut()">
         <fa-icon [icon]="faLogout"></fa-icon>
       </button>
     </div>

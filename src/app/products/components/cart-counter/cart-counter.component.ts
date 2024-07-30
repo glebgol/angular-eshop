@@ -6,27 +6,24 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
   styleUrl: './cart-counter.component.scss'
 })
 export class CartCounterComponent {
-  @Input() count: number = 1;
+  @Input() count!: number;
   @Input() stock!: number;
 
   @Output() changedCount = new EventEmitter<number>();
-  @Output() clicked = new EventEmitter<void>();
 
-  isClicked: boolean = false;
-
-  addToCartAndOpenCounter() {
-    this.isClicked = true;
-    this.clicked.emit();
+  addToCart() {
+    this.count = 1;
+    this.changedCount.emit(this.count);
   }
 
   decrementCounter() {
     this.count--;
-    this.changedCount.emit(this.count)
+    this.changedCount.emit(this.count);
   }
 
   incrementCounter() {
     this.count++;
-    this.changedCount.emit(this.count)
+    this.changedCount.emit(this.count);
   }
 
   isDecrementDisabled() {

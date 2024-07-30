@@ -1,9 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Product} from "../../../shared/models/product";
+import {Product} from "../../../shared/models/product.model";
 import {CartService} from "../../../shared/services/cart.service";
-import {faStar, faDollar} from "@fortawesome/free-solid-svg-icons";
-import {catchError, of, throwError} from "rxjs";
-import {HttpErrorResponse} from "@angular/common/http";
+import {faDollar, faStar} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-product',
@@ -12,26 +10,19 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class ProductComponent {
   @Input() product!: Product;
+  @Input() count!: number;
+
   @Output() deleted = new EventEmitter<string>();
 
-  count: number = 1;
   star = faStar;
   dollar = faDollar;
 
   constructor(protected cartService: CartService) {
   }
 
-  updateProductQuantity(quantity: number) {
-    this.cartService.updateCart(this.product, quantity);
-  }
-
-  addToCartAndSetCartProductCount() {
-    this.cartService.getCartProductEntry(this.product.id).subscribe(cartEntry => {
-      this.count = cartEntry.count;
-    }, () => {
-      this.count = 1;
-      this.cartService.updateCart(this.product, this.count);
-    });
+  updateProductCount(count: number) {
+    this.count = count;
+    this.cartService.updateCart(this.product, count);
   }
 
   delete() {

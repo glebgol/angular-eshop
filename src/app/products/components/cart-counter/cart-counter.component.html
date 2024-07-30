@@ -1,6 +1,6 @@
-<button *ngIf="!isClicked;else counter"
-        [disabled]="isNotInStock()"
-        (click)="addToCartAndOpenCounter()" class="button">Add To Cart!</button>
+<button *ngIf="count == 0;else counter"
+        [disabled]="isNotInStock()" (click)="addToCart()" class="button">Add To Cart!
+</button>
 
 <ng-template #counter>
   <div class="counter">

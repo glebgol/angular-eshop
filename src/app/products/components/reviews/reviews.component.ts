@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Review} from "../../../shared/models/review";
+import {Review} from "../../../shared/models/review.model";
 import {ReviewsService} from "../../../shared/services/reviews.service";
 
 @Component({

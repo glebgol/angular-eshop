@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {CartProductEntry} from "../models/cart-product-entry";
-import {Product} from "../models/product";
-import {map, Observable} from "rxjs";
+import {CartProductEntry} from "../models/cart-product-entry.model";
+import {Product} from "../models/product.model";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class CartService {

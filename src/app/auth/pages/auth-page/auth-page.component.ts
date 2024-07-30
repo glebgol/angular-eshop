@@ -1,8 +1,7 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {UserService} from "../../../shared/services/user.service";
-import {UserDto} from "../../../shared/models/user-dto";
+import {UserDto} from "../../../shared/models/user-dto.model";
 import {Router} from "@angular/router";
-import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-auth-page',

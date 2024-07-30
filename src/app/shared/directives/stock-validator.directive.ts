@@ -1,6 +1,6 @@
 import { Directive } from '@angular/core';
 import {AbstractControl, NG_VALIDATORS, ValidationErrors, Validator} from "@angular/forms";
-import {CustomValidators} from "../validators/CustomValidators";
+import {CustomValidators} from "../validators/custom.validators";
 
 @Directive({
   selector: '[appStockValidator]',

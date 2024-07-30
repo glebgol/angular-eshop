@@ -1,5 +1,5 @@
 <div class="form">
-  <form [formGroup]="filtersForm" novalidate>
+  <form [formGroup]="form" novalidate>
     <div class="filter">
       <label>Min Price</label>
       <div *ngIf="minPrice?.hasError('min')" class="error-message">Price should be >= 0</div>
@@ -12,13 +12,18 @@
     </div>
     <div class="filter">
       <label>Min Rating</label>
-      <div *ngIf="minRating?.hasError('min')" class="error-message">Rating should be >= 0</div>
-      <input [class.error]="minRating?.invalid" type="number" name="minRating" formControlName="minRating"/>
+      <p-rating formControlName="minRating" [cancel]="false"/>
     </div>
     <div class="filter">
       <label>Max Rating</label>
-      <div *ngIf="maxRating?.hasError('min')" class="error-message">Rating should be >= 0</div>
-      <input [class.error]="maxRating?.invalid" type="number" name="maxRating" formControlName="maxRating"/>
+      <p-rating formControlName="maxRating" [cancel]="false"/>
+    </div>
+    <div class="filter">
+      <label>Rating range</label>
+      <mat-slider [min]="0" [max]="5" [step]="0.1" showTickMarks>
+        <input formControlName="minRating" matSliderStartThumb>
+        <input formControlName="maxRating" matSliderEndThumb>
+      </mat-slider>
     </div>
     <div class="checkbox-filter">
       <label>In stock</label>
@@ -29,5 +34,5 @@
       <input type="checkbox" name="hasReviews" formControlName="hasReviews"/>
     </div>
   </form>
-  <button (click)="resetForm()" [hidden]="isFormEmpty()" class="reset-button">Delete filters</button>
+  <button (click)="resetForm()" class="reset-button">Delete filters</button>
 </div>

@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {CartComponent} from "./pages/cart/cart.component";
 import {CartEntryComponent} from "./components/cart-entry/cart-entry.component";
 import {SharedModule} from "../shared/shared.module";

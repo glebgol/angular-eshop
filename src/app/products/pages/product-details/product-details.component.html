@@ -8,11 +8,9 @@
       </div>
       <div>
         <p>{{product.title}}</p>
-        <p>Rate {{product.rating.rate}}<fa-icon class="rating_star" [icon]="star"></fa-icon> ({{product.rating.count}} reviews)</p>
-        <app-cart-counter [count]="count"
-                          [stock]="product.stock"
-                          (clicked)="addToCartAndSetCartProductCount()"
-                          (changedCount)="updateProductQuantity($event)">
+        <p>Rate {{product.rating?.rate}}<fa-icon class="rating_star" [icon]="star"></fa-icon> ({{product.rating?.count}} reviews)</p>
+        <app-cart-counter [count]="count" [stock]="product.stock"
+                          (changedCount)="updateProductCount($event)">
         </app-cart-counter>
         <p>Price {{product.price}} <fa-icon [icon]="dollar"></fa-icon></p>
         <p>{{product.description}}</p>

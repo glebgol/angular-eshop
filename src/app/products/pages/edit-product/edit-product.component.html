@@ -3,7 +3,7 @@
   <div *ngIf="isLoading">Loading...</div>
   <div class="edit-form" *ngIf="!isLoading && isFound">
     <div>
-      <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+      <form #myForm="ngForm" (ngSubmit)="onSubmit()">
         <h2 *ngIf="isSubmitted" class="success">Successfully changed!</h2>
         <label for="image">Image:</label>
         <div *ngIf="image.invalid" class="error-message">

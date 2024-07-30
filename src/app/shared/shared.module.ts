@@ -13,7 +13,6 @@ import {ProductService} from "./services/product.service";
 import {RouterLink} from "@angular/router";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AuthGuard} from "./guards/auth.guard";
-import {BackService} from "./services/back.service";
 
 
 @NgModule({
@@ -45,7 +44,6 @@ import {BackService} from "./services/back.service";
     ReviewsService,
     UserService,
     ProductService,
-    BackService,
     AuthGuard,
   ]
 })

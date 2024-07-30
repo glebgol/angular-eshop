@@ -4,17 +4,15 @@
     {{product.title}}
   </div>
   <div class="buttons_container">
-    <app-cart-counter [count]="count"
-                      [stock]="product.stock"
+    <app-cart-counter [count]="count" [stock]="product.stock"
                       (click)="$event.stopPropagation()"
-                      (clicked)="addToCartAndSetCartProductCount()"
-                      (changedCount)="updateProductQuantity($event)">
+                      (changedCount)="updateProductCount($event)">
     </app-cart-counter>
     <button class="button" (click)="delete(); $event.stopPropagation()">Delete</button>
     <button class="button" (click)="$event.stopPropagation()" routerLink="../product/edit/{{product.id}}">Edit</button>
   </div>
   <div class="product-info">
-    <p>{{product.rating.rate}}<fa-icon class="rating_star" [icon]="star"></fa-icon></p>
+    <p>{{product.rating?.rate}}<fa-icon class="rating_star" [icon]="star"></fa-icon></p>
     <p>{{product.price}} <fa-icon [icon]="dollar"></fa-icon></p>
   </div>
 </div>

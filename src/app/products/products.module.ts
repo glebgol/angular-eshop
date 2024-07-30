@@ -13,6 +13,8 @@ import {SharedModule} from "../shared/shared.module";
 import {RouterModule, Routes} from "@angular/router";
 import {AuthGuard} from "../shared/guards/auth.guard";
 import {ReactiveFormsModule} from "@angular/forms";
+import {RatingModule} from "primeng/rating";
+import {MatSliderModule} from '@angular/material/slider';
 
 const routes: Routes = [
   { path: '', redirectTo: 'products', pathMatch: 'full' },
@@ -37,7 +39,9 @@ const routes: Routes = [
   imports: [
     ReactiveFormsModule,
     SharedModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    RatingModule,
+    MatSliderModule
   ],
   exports: [
     ProductsPageComponent,

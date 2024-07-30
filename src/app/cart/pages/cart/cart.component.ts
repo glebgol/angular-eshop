@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {CartService} from "../../../shared/services/cart.service";
-import {CartProductEntry} from "../../../shared/models/cart-product-entry";
+import {CartProductEntry} from "../../../shared/models/cart-product-entry.model";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
 
 @Component({
@@ -10,7 +10,7 @@ import {animate, keyframes, style, transition, trigger} from "@angular/animation
   animations: [
     trigger('floatingOut', [
       transition(':enter', [
-        animate('1s ease-in', keyframes([
+        animate('0.6s ease-in', keyframes([
           style({
             opacity: 0,
             transform: 'translateX(-100%)',
@@ -24,7 +24,7 @@ import {animate, keyframes, style, transition, trigger} from "@angular/animation
         ]))
       ]),
       transition(':leave', [
-        animate('1s ease-out', keyframes([
+        animate('0.6s ease-out', keyframes([
           style({
             opacity: 1,
             transform: 'translateX(0)',

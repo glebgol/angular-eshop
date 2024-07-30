@@ -1,9 +1,7 @@
-import { Component } from '@angular/core';
-import {CartService} from "../../../shared/services/cart.service";
+import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {ProductService} from "../../../shared/services/product.service";
-import {Product} from "../../../shared/models/product";
-import {NgForm} from "@angular/forms";
+import {Product} from "../../../shared/models/product.model";
 
 @Component({
   selector: 'app-edit-product',
@@ -11,17 +9,14 @@ import {NgForm} from "@angular/forms";
   styleUrl: './edit-product.component.scss'
 })
 export class EditProductComponent {
-  id: string = '1';
+  id!: string;
   product!: Product;
   isSubmitted: boolean = false;
   isLoading: boolean = true;
   isFound: boolean = false;
 
   constructor(activateRoute: ActivatedRoute, private productService: ProductService) {
-    this.id = activateRoute.snapshot.params["id"];
-    this.productService.getProductById(this.id).subscribe((product => {
-      this.product = product;
-    }));
+    this.id = activateRoute.snapshot.params['id'];
   }
 
   ngOnInit() {
@@ -35,7 +30,7 @@ export class EditProductComponent {
     });
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit() {
     this.isSubmitted = true;
     this.productService.updateProduct(this.product);
   }
