@@ -1,0 +1,22 @@
+.product__details {
+  padding: 50px;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.product {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+hr {
+  width:100%;
+  text-align:center;
+}
+
+.image {
+  height: 300px;
+}

@@ -1,1 +1,47 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  margin:0;
+  padding:0;
+  background: #ececec;
+  display: flex;
+  flex-direction: column;
+}
+
+.button {
+  width: 100px;
+  height: 50px;
+  background: #cceae2;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #80e8cb;
+}
+
+.button:disabled:hover {
+  cursor: auto;
+  background: #cceae2;
+}
+
+
+.rating_star {
+  color: gold;
+}
+
+.error {
+  border: 2px solid red;
+}
+
+.error:focus {
+  outline: 1px solid red;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  font-size: 16px;
+}

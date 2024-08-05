@@ -1,0 +1,8 @@
+<div *ngIf="isLoading; else reviewsTemplate">Loading...</div>
+<ng-template #reviewsTemplate>
+  <div class="reviews">
+    <div *ngIf="reviews.length == 0">There are no reviews for this product</div>
+    <h3 *ngIf="reviews.length">Reviews</h3>
+    <app-review *ngFor="let review of reviews" [review]="review"></app-review>
+  </div>
+</ng-template>

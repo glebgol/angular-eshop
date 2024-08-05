@@ -1,0 +1,19 @@
+.filter-bagdes-container {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin: 20px;
+}
+
+.badge {
+  display: block;
+  height: 30px;
+  border-radius: 25px;
+  color: white;
+  background: #385170;
+}
+
+.badge:hover {
+  background: #304967;
+  text-decoration: line-through 2px #FF5733;
+}

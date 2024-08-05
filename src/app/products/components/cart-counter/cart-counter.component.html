@@ -1,0 +1,11 @@
+<button *ngIf="count == 0;else counter"
+        [disabled]="isNotInStock()" (click)="addToCart()" class="button">Add To Cart!
+</button>
+
+<ng-template #counter>
+  <div class="counter">
+    <button class="counter_button" (click)="decrementCounter()" [disabled]="isDecrementDisabled()">-</button>
+    <p>{{count}}</p>
+    <button class="counter_button" (click)="incrementCounter()" [disabled]="isOutOfStock()">+</button>
+  </div>
+</ng-template>

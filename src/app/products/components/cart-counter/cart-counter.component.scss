@@ -1,0 +1,24 @@
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 50px;
+}
+
+.counter_button {
+  width: 50px;
+  height: 50px;
+  background: #cceae2;
+  border: none;
+  cursor: pointer;
+}
+
+.counter_button:hover {
+  background: #80e8cb;
+}
+
+.counter_button:disabled {
+  cursor: auto;
+  background: #9fabab;
+  opacity: 0.6;
+}

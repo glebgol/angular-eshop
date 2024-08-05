@@ -1,0 +1,37 @@
+<div class="form">
+  <h2 *ngIf="isSignUp; else SignIn">Register</h2>
+  <ng-template #SignIn><h2>Login</h2></ng-template>
+  <h2 *ngIf="isUserNotExists && !isUserWithEmailExists" class="error-message">User with that email and password doesn't exist</h2>
+  <h2 *ngIf="isUserWithEmailExists" class="error-message">User with that email exists</h2>
+
+  <form #authForm="ngForm" (ngSubmit)="submitForm()" class="sign-in-up-form">
+    <label for="email">Email</label>
+    <div *ngIf="email.invalid && (email.touched || email.dirty)" class="error-message">
+      <div *ngIf="email?.errors?.['required']">Email is required</div>
+      <div *ngIf="email?.errors?.['email']">Invalid email</div>
+    </div>
+    <input type="email" id="email" name="email" [email]="true" [(ngModel)]="user.email" #email="ngModel" required
+           [class.error]="(email.touched || email.dirty) && email.invalid">
+
+    <label for="password">Password</label>
+    <div *ngIf="password?.invalid && (password.touched || password.dirty)" class="error-message">
+      <div *ngIf="password.touched && password?.errors?.['required']">Password is required</div>
+      <div *ngIf="password.touched && password?.errors?.['minlength']">Min length 5</div>
+    </div>
+
+    <input type="text" [minlength]="isSignUp ? 5 : null" id="password" name="password" [(ngModel)]="user.password" #password="ngModel"
+           required [class.error]="(password.touched || password.dirty) && password.invalid">
+    <button [disabled]="authForm.invalid">Submit</button>
+  </form>
+
+  <div *ngIf="isSignUp; else SignInSwitch" class="auth-link">
+    <div>Already have an account?</div>
+    <div (click)="switchForm()" class="switch_button">Login</div>
+  </div>
+  <ng-template #SignInSwitch>
+    <div class="auth-link">
+      <div>Don't have an account?</div>
+      <div (click)="switchForm()" class="switch_button">Register</div>
+    </div>
+  </ng-template>
+</div>

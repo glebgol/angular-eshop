@@ -1,0 +1,32 @@
+
+
+.form {
+  margin: 30px 10px 30px 10px;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 100px;
+  max-width: 15%;
+  height: 100%;
+  color: #48793c;
+
+  font-size: 20px;
+}
+
+.sticky-form {
+  padding: 10px;
+  max-width: 200px;
+
+  background: #d1e1df;
+}
+
+.products {
+  width: calc(100% - 200px);
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background: #ececec;
+  position: relative;
+}

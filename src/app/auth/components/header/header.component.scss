@@ -1,0 +1,71 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  margin-left: 100px;
+  gap: 100px;
+}
+
+.tool-bar {
+  margin-right: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+
+  p {
+    color: #fff;
+    margin-right: 0.5rem;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  button:hover {
+    color: #ccc;
+  }
+
+  fa-icon {
+    font-size: 20px;
+    margin-right: 0.5rem;
+  }
+
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  background: #24527a;
+  z-index: 1;
+  width: 100%;
+  min-height: 100px;
+}
+
+a {
+  color: aliceblue;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a:hover {
+  color: #8ee0ff;
+}
+
+a:active {
+  color: #33c5fc;
+}

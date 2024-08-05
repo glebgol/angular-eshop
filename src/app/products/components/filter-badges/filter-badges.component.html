@@ -1,0 +1,5 @@
+<div class="filter-bagdes-container">
+  <div *ngFor="let badge of badges | keyvalue">
+    <button (click)="deleteFilter(badge.key)" class="badge">{{badge.value}}</button>
+  </div>
+</div>

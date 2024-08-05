@@ -1,0 +1,51 @@
+<div class="container">
+  <div *ngIf="!isFound && !isLoading"><h2>Product Not Found</h2></div>
+  <div *ngIf="isLoading">Loading...</div>
+  <div class="edit-form" *ngIf="!isLoading && isFound">
+    <div>
+      <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+        <h2 *ngIf="isSubmitted" class="success">Successfully changed!</h2>
+        <label for="image">Image:</label>
+        <div *ngIf="image.invalid" class="error-message">
+          Image is required
+        </div>
+        <input type="text" id="image" name="image" [(ngModel)]="product.image" #image="ngModel" required
+               [class.error]="(image.touched || image.dirty) && image.invalid">
+
+        <label for="title">Title:</label>
+        <div *ngIf="title.invalid" class="error-message">
+          <div *ngIf="title.errors?.['required']">Title is required</div>
+        </div>
+        <input  type="text" id="title" name="title" [(ngModel)]="product.title" #title="ngModel" required
+                [class.error]="(title.touched || title.dirty) && title.invalid">
+
+        <label for="price">Price:</label>
+        <div *ngIf="price.invalid" class="error-message">
+          <div *ngIf="price.errors?.['required']">Price is required.</div>
+          <div *ngIf="price.errors?.['min']">Price should be >= 0.</div>
+        </div>
+        <input [min]="0" type="number" id="price" name="price" [(ngModel)]="product.price" #price="ngModel" required
+               [class.error]="(price.touched || price.dirty) && price.invalid">
+
+        <label for="stock">Number in stock:</label>
+        <div *ngIf="stock.invalid" class="error-message">
+          <div *ngIf="stock.errors?.['required']">Stock is required.</div>
+          <div *ngIf="stock.errors?.['isNotInteger']">Stock should be an integer.</div>
+          <div *ngIf="stock.errors?.['min']">Stock should be >= 0.</div>
+        </div>
+        <input appStockValidator [min]="0" type="number" id="stock" name="stock" [(ngModel)]="product.stock"
+               #stock="ngModel" required [class.error]="(stock.touched || stock.dirty) && stock.invalid">
+        <label for="description">Description:</label>
+        <div *ngIf="description.invalid" class="error-message">
+          <div *ngIf="description.errors?.['required']">Description is required.</div>
+        </div>
+        <textarea id="description" name="description" [(ngModel)]="product.description" #description="ngModel" required
+                  [class.error]="(description.touched || description.dirty) && description.invalid"></textarea>
+        <button [disabled]="!myForm.form.valid" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  <div class="image-container" *ngIf="!isLoading && isFound">
+    <img [src]="product.image ? product.image : 'default-product.png'" [alt]="product.title">
+  </div>
+</div>
