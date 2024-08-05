@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
-import {ProductService} from "../../../shared/services/product.service";
+import {ProductService} from "../../services/product.service";
 import {Product} from "../../../shared/models/product.model";
 import {CartProductEntry} from "../../../shared/models/cart-product-entry.model";
-import {CartService} from "../../../shared/services/cart.service";
+import {CartService} from "../../../cart/services/cart.service";
 
 @Component({
   selector: 'app-product-list',

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {CartProductEntry} from "../models/cart-product-entry.model";
-import {Product} from "../models/product.model";
+import {CartProductEntry} from "../../shared/models/cart-product-entry.model";
+import {Product} from "../../shared/models/product.model";
 import {Observable} from "rxjs";
 
 @Injectable()

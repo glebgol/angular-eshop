@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {UserService} from "../../../shared/services/user.service";
+import {UserService} from "../../services/user.service";
 import {UserDto} from "../../../shared/models/user-dto.model";
 import {Router} from "@angular/router";
 

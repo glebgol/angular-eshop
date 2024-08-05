@@ -1,8 +1,8 @@
 import {Component, ViewChild} from '@angular/core';
-import {ProductService} from "../../../shared/services/product.service";
+import {ProductService} from "../../services/product.service";
 import {Product} from "../../../shared/models/product.model";
 import {FiltersFormComponent} from "../../components/filters-form/filters-form.component";
-import {ReviewsService} from "../../../shared/services/reviews.service";
+import {ReviewsService} from "../../services/reviews.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FILTERS} from "../../constants/filters.constants";
 import {HttpParams} from "@angular/common/http";

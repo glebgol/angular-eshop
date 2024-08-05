@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {CartService} from "../../../shared/services/cart.service";
-import {ProductService} from "../../../shared/services/product.service";
+import {CartService} from "../../../cart/services/cart.service";
+import {ProductService} from "../../services/product.service";
 import {Product} from "../../../shared/models/product.model";
 import {faDollar, faStar} from "@fortawesome/free-solid-svg-icons";
 

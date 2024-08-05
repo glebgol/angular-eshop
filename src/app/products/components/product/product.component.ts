@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Product} from "../../../shared/models/product.model";
-import {CartService} from "../../../shared/services/cart.service";
+import {CartService} from "../../../cart/services/cart.service";
 import {faDollar, faStar} from "@fortawesome/free-solid-svg-icons";
 
 @Component({

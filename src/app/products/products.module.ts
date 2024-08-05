@@ -11,10 +11,12 @@ import {FiltersFormComponent} from "./components/filters-form/filters-form.compo
 import {FilterBadgesComponent} from "./components/filter-badges/filter-badges.component";
 import {SharedModule} from "../shared/shared.module";
 import {RouterModule, Routes} from "@angular/router";
-import {AuthGuard} from "../shared/guards/auth.guard";
+import {AuthGuard} from "../auth/guards/auth.guard";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RatingModule} from "primeng/rating";
 import {MatSliderModule} from '@angular/material/slider';
+import {ReviewsService} from "./services/reviews.service";
+import {ProductService} from "./services/product.service";
 
 const routes: Routes = [
   { path: '', redirectTo: 'products', pathMatch: 'full' },
@@ -47,6 +49,10 @@ const routes: Routes = [
     ProductsPageComponent,
     ProductDetailsComponent,
     EditProductComponent,
+  ],
+  providers: [
+    ProductService,
+    ReviewsService,
   ]
 })
 export class ProductsModule { }

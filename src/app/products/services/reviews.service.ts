@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Review} from "../models/review.model";
+import {Review} from "../../shared/models/review.model";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 

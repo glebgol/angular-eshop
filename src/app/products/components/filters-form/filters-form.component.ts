@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, ValidatorFn, Validators} from "@angular/forms";
-import {ProductService} from "../../../shared/services/product.service";
+import {ProductService} from "../../services/product.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {FILTERS} from "../../constants/filters.constants";
 

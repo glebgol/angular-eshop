@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {CartService} from "../../../shared/services/cart.service";
+import {CartService} from "../../services/cart.service";
 import {CartProductEntry} from "../../../shared/models/cart-product-entry.model";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
 
